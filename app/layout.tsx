@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
+import PerformanceLogger from "@/components/PerformanceLogger";
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -39,7 +42,11 @@ export default function RootLayout({
       style={{ colorScheme: "dark" }}
       className={`${inter.variable} ${grotesk.variable} ${jetbrains.variable} h-full antialiased`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        <ServiceWorkerRegister />
+        <PerformanceLogger />
+      </body>
     </html>
   );
 }

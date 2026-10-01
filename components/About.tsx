@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ProgressiveImage from "./ProgressiveImage";
 import Eyebrow from "./Eyebrow";
 import Reveal from "./Reveal";
 
@@ -34,7 +34,7 @@ export default function About() {
         <Reveal delay={100}>
           <div className="relative aspect-[3/4] overflow-hidden border border-bone/10 bg-coal">
             <div className="absolute inset-0">
-              <Image
+              <ProgressiveImage
                 src="/jeizi-zamora.webp"
                 alt="Jeizi Zamora"
                 fill

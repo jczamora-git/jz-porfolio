@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ProgressiveImage from "./ProgressiveImage";
 import Eyebrow from "./Eyebrow";
 import Reveal from "./Reveal";
 
@@ -70,7 +70,7 @@ export default function Works() {
             <article className="group cursor-pointer">
               <div className="relative aspect-square overflow-hidden border border-bone/10 bg-coal transition-colors duration-500 group-hover:border-blood/60">
                 <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.04]">
-                  <Image
+                  <ProgressiveImage
                     src={p.image}
                     alt={`${p.title} — work preview`}
                     fill

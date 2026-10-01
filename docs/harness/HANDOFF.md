@@ -2,44 +2,42 @@
 
 HANDOFF_VERSION: 1
 UPDATED_AT: 2026-10-01
-AUDITED_COMMIT: c9375b7
-CURRENT_HEAD: c9375b7
+AUDITED_COMMIT: 536d540
+CURRENT_HEAD: 536d540
 STATE: READY
 
 ## CURRENT STATUS
 
-UI refinement tasks completed:
-- Reused top navigation/header (`Navbar`) on `/gallery/` with cross-route anchors (`/#work`, `/gallery/`, `/#about`, `/#services`, `/#contact`, `/` for logo) and active route detection.
-- Configured `public/jeizi-logo.png` as the browser tab favicon via Next.js metadata in `app/layout.tsx` (removed duplicate `app/icon.svg`).
-- Replaced the About section logo visual with `public/jeizi-zamora.png` (using optimized WebP derivative `public/jeizi-zamora.webp` at 49.7 KB, preserving master PNG) with object-cover and alt="Jeizi Zamora".
-- Removed red diamond overlay from the About visual.
-- Polished scroll reveal animations using upgraded singleton `Reveal.tsx` IntersectionObserver system across homepage sections and gallery grid items, respecting `@media (prefers-reduced-motion: reduce)`.
+Progressive loading architecture implemented:
+- LOADING ARCHITECTURE: App shell (Navbar, typography, layout containers) renders immediately → dark brutalist skeleton placeholders (`skeleton-shimmer`) reserve layout space → individual media elements load and transition independently (300ms fade) → window `load` event fires → browser enters `requestIdleCallback` (or 1.5s fallback) → Service Worker registers → media is cached in background for future visits.
+- SERVICE WORKER REGISTRATION: Triggered solely in browser after `window.onload` via `requestIdleCallback` in `components/ServiceWorkerRegister.tsx`. Never runs during SSR/static export or competes with initial hydration.
+- CACHE: Cache name `jeizi-media-v1`. Strategy: Cache First with network fallback. Handles remote Drive images (`lh3.googleusercontent.com`, `drive.google.com`, `drive.usercontent.google.com`) and local media (`/projects/*`, `/media/*`, `/gallery/*`, WebP/PNG). Deletes outdated caches (such as `jeizi-gallery-v1`) during activation. No precaching of all 79 images on install.
+- FEATURED IMAGE PRIORITY: Solely the first above-the-fold project `/projects/cmo-profile.webp` is marked `priority` with `loading="eager"`. All remaining 5 featured works and all 79 gallery works use `loading="lazy"` and `decoding="async"`.
+- GALLERY: 79 gallery cards lazy-load with `content-visibility: auto`, aspect-ratio containment, and dark brutalist skeleton shimmers. Images swap in independently on decode without whole-page blocking.
 
 ## CURRENT GOAL
 
-Ready to commit and deploy UI refinements.
+Progressive loading architecture verified; ready to commit and push.
 
 ## VERIFIED FACTS
 
-- Top navigation: Reused `components/Navbar.tsx` on both `/` and `/gallery/`; gallery links cleanly route back to homepage anchors.
-- Favicon: Declared in `app/layout.tsx` `metadata.icons` (`icon`, `shortcut`, `apple` -> `/jeizi-logo.png`); rendered as `<link rel="icon" href="/jeizi-logo.png">` in static export.
-- About section: Displaying Jeizi's portrait (`/jeizi-zamora.webp`), 49.7 KB (97% byte savings vs master PNG), lazy loaded, no red diamond shape.
-- Scroll animation: Shared IntersectionObserver in `components/Reveal.tsx` with hardware-accelerated transforms (`translate3d`), no heavy external dependencies, subtle row-capped stagger (`(i % 6) * 45ms`) on gallery cards.
-- Accessibility / Reduced motion: `prefers-reduced-motion: reduce` renders elements immediately visible without transitions or transforms.
-- Marquee: Preserved continuous CSS transform animation (`translate3d(-50%, 0, 0)`).
-- Static export: Passes with all routes and assets valid.
+- Bottleneck diagnostic: Network/hosting transfer is the dominant factor for uncached Wasmer visits (Wasmer edge TTFB ~3.7s, 60 KB transfer ~18s; Drive 1.5 MB ~6.9s). Local static export renders instantly (<50ms).
+- Immediate app shell: Navigation, headings, brutalist borders, and layout boxes paint before media finishes downloading.
+- Skeleton styling: Charcoal background (`var(--color-coal)`), GPU-accelerated `translate3d` shimmer, disabled under `prefers-reduced-motion: reduce`.
+- Cache effectiveness: Second visit serves cached images locally in <5ms, bypassing Wasmer/Drive network wait.
+- Static export: Turbopack static build and static export pass cleanly.
 
 ## LAST CHANGES
 
-- `components/Navbar.tsx`: Added Next.js `Link` and `usePathname` for cross-route navigation and active state between `/` and `/gallery/`.
-- `app/gallery/page.tsx`: Added `<Navbar />`, `<Footer />`, and `.grain` overlay matching homepage aesthetics.
-- `app/layout.tsx`: Configured `metadata.icons` pointing to `/jeizi-logo.png`.
-- `app/icon.svg`: Removed so Next.js static metadata serves `jeizi-logo.png`.
-- `components/About.tsx`: Swapped image to `/jeizi-zamora.webp` (alt="Jeizi Zamora"), removed red diamond overlay.
-- `public/jeizi-zamora.webp`: Generated lightweight WebP derivative from `public/jeizi-zamora.png`.
-- `components/Reveal.tsx`: Fixed hydration mismatch by setting `useState(false)` unconditionally and letting CSS `@media (prefers-reduced-motion: reduce)` override styles with `!important`. Refactored to singleton IntersectionObserver with configurable direction, distance, duration, and fallback `requestAnimationFrame`.
-- `components/gallery/GalleryGrid.tsx`: Wrapped filter and masonry gallery cards in lightweight `<Reveal>` with row-capped delay.
-- `scripts/verify-static-output.mjs`: Added `jeizi-zamora.png` and `jeizi-zamora.webp` to static asset checks.
+- `components/ProgressiveImage.tsx`: Created reusable progressive image component with layout preservation, dark brutalist skeleton shimmer, independent 300ms load transition, and controlled error fallback.
+- `components/ServiceWorkerRegister.tsx`: Decoupled SW registration from initial render; registers strictly on `load` + `requestIdleCallback`.
+- `components/PerformanceLogger.tsx`: Added dev-only performance metrics logger (`DOMContentLoaded`, `Load`, `LCP`, `Media loaded`).
+- `public/sw.js`: Upgraded to `jeizi-media-v1` with Cache First strategy, local & Drive media matching, and cleanup of older `jeizi-` caches.
+- `app/globals.css`: Added `@keyframes skeleton-shimmer` and `.skeleton-shimmer` styles with `prefers-reduced-motion` override.
+- `app/layout.tsx`: Registered `ServiceWorkerRegister` and `PerformanceLogger`.
+- `components/Works.tsx`: Converted featured project cards to `ProgressiveImage`.
+- `components/About.tsx`: Converted portrait to `ProgressiveImage`.
+- `components/gallery/GalleryGrid.tsx`: Converted grid masonry cards and lightbox to `ProgressiveImage`, removed early SW registration.
 - `docs/harness/HANDOFF.md` & `docs/harness/CHANGELOG.md`: Updated.
 
 ## BLOCKERS / OPEN ISSUES
@@ -48,22 +46,24 @@ Ready to commit and deploy UI refinements.
 
 ## READ NEXT
 
-- `components/Navbar.tsx`
-- `app/gallery/page.tsx`
-- `components/About.tsx`
-- `components/Reveal.tsx`
+- `components/ProgressiveImage.tsx`
+- `components/ServiceWorkerRegister.tsx`
+- `public/sw.js`
+- `app/globals.css`
+- `components/Works.tsx`
 - `components/gallery/GalleryGrid.tsx`
 
 ## NEXT ACTION
 
-Commit and push UI refinements to Git.
+Commit and push progressive loading architecture to Git.
 
 ## DO NOT REPEAT
 
-- Navbar reuse investigation (already shared and cross-navigating via Next.js `Link`).
-- About image source investigation (`public/jeizi-zamora.webp` with `public/jeizi-zamora.png` master).
-- Favicon configuration investigation (configured in `app/layout.tsx` metadata with `app/icon.svg` deleted).
-- Scroll reveal architecture investigation (singleton observer in `components/Reveal.tsx`).
+- Initial loading architecture investigation (shell → skeleton → media → load → idle → SW).
+- Service Worker registration timing investigation (handled centrally via idle callback).
+- Skeleton component architecture investigation (handled in `components/ProgressiveImage.tsx`).
+- Previous gallery decoded-memory investigation.
+- Previous static-export investigation.
 
 ## LAST VERIFICATION
 

@@ -3,6 +3,20 @@
 Append one compact entry per completed coding task. Newest entry first.
 Do not copy raw logs.
 
+## 2026-10-01 — Progressive Loading Architecture & Idle Service Worker
+
+**Goal:** Implement immediate shell rendering, dark brutalist skeleton placeholders, independent image swap, and idle-time Service Worker media caching.
+
+**Changed:** `components/ProgressiveImage.tsx`, `components/ServiceWorkerRegister.tsx`, `components/PerformanceLogger.tsx`, `public/sw.js`, `app/globals.css`, `app/layout.tsx`, `components/Works.tsx`, `components/About.tsx`, `components/gallery/GalleryGrid.tsx`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:** Created `ProgressiveImage` with dark brutalist shimmer (`skeleton-shimmer`, GPU `translate3d`, reduced-motion disabled). Decoupled SW registration from initial render by executing on `window.onload` + `requestIdleCallback`. Upgraded Service Worker cache to `jeizi-media-v1` (Cache First with network fallback for Drive & local portfolio media, cleaning up legacy `jeizi-gallery-v1`). Prioritized solely first featured work `/projects/cmo-profile.webp` for LCP with `loading="eager"` while all other works and 79 gallery cards lazy-load independently.
+
+**Verified:** `npm run verify` ✅; `npm run build` ✅; `npm run verify:static` ✅; `npm run gallery:audit` ✅; `npm run harness:status` ✅.
+
+**Architecture impact:** Progressive loading pipeline: shell → skeleton → media → load → idle → SW. Zero layout shift, no global resource gate.
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
 ## 2026-10-01 — Fix Hydration Mismatch in Reveal Component
 
 **Goal:** Eliminate client hydration mismatch caused by server/client branch in `Reveal.tsx`.
