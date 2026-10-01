@@ -33,6 +33,7 @@ console.log("HARNESS STATUS");
 console.log(`branch: ${branch}`);
 console.log(`head: ${head}`);
 console.log(`next: ${nextVersion}`);
+console.log(`agents: ${exists("AGENTS.md")}`);
 console.log(`handoff: ${exists("docs/harness/HANDOFF.md")}`);
 console.log(`audit: ${exists("docs/harness/AUDIT.md")}`);
 console.log(`changelog: ${exists("docs/harness/CHANGELOG.md")}`);
