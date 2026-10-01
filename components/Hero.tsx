@@ -4,9 +4,9 @@ import Reveal from "./Reveal";
 export default function Hero() {
   return (
     <section className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6 pb-24 pt-32 md:px-10">
-      {/* ambient red glow */}
-      <div className="pointer-events-none absolute -right-40 -top-40 h-[34rem] w-[34rem] rounded-full bg-blood/20 blur-[160px]" />
-      <div className="pointer-events-none absolute bottom-0 left-1/2 h-40 w-[60rem] -translate-x-1/2 bg-blood/10 blur-[120px]" />
+      {/* ambient red glow — promoted to GPU layer to prevent repaint on scroll */}
+      <div className="pointer-events-none absolute -right-40 -top-40 h-[34rem] w-[34rem] rounded-full bg-blood/20 blur-[160px] transform-gpu will-change-transform" />
+      <div className="pointer-events-none absolute bottom-0 left-1/2 h-40 w-[60rem] -translate-x-1/2 bg-blood/10 blur-[120px] transform-gpu will-change-transform" />
 
       {/* giant watermark */}
       <span className="text-outline pointer-events-none absolute -bottom-20 -left-10 select-none font-display text-[24rem] font-bold leading-none md:text-[30rem]">

@@ -1,6 +1,16 @@
 # Git metadata
 .git
+.git/
+**/.git
 .gitignore
+
+# Artwork / Heavy local assets (served remotely or bypassed in production container)
+public/gallery
+public/gallery/
+
+# Documentation & workspace notes
+docs
+*.md
 
 # Dependencies
 node_modules

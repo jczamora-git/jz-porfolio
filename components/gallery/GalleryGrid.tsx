@@ -116,7 +116,7 @@ export default function GalleryGrid({ items }: { items: GalleryItem[] }) {
             key={item.id || item.src}
             type="button"
             onClick={() => open(i)}
-            className="group mb-5 block w-full break-inside-avoid text-left"
+            className="gallery-item group mb-5 block w-full break-inside-avoid text-left"
             aria-label={`Open ${item.title} full size`}
           >
             <div
@@ -140,7 +140,7 @@ export default function GalleryGrid({ items }: { items: GalleryItem[] }) {
                   {item.category}
                 </p>
               </div>
-              <span className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center border border-bone/20 bg-ink/60 font-mono text-sm text-bone opacity-0 backdrop-blur transition-opacity duration-300 group-hover:opacity-100">
+              <span className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center border border-bone/20 bg-ink/60 font-mono text-sm text-bone opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:backdrop-blur">
                 +
               </span>
             </div>

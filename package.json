@@ -12,7 +12,8 @@
     "gallery:audit": "node scripts/audit-gallery-sources.mjs",
     "verify": "eslint && tsc --noEmit",
     "deploy:audit": "node scripts/deploy-audit.mjs",
-    "verify:static": "node scripts/verify-static-output.mjs"
+    "verify:static": "node scripts/verify-static-output.mjs",
+    "harness:status": "node scripts/harness-status.mjs"
   },
   "dependencies": {
     "next": "16.2.12",
