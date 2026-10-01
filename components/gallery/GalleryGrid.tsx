@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { GalleryItem } from "@/lib/gallery";
+import Reveal from "@/components/Reveal";
 
 export default function GalleryGrid({ items }: { items: GalleryItem[] }) {
   const [active, setActive] = useState<string>("all");
@@ -98,89 +99,96 @@ export default function GalleryGrid({ items }: { items: GalleryItem[] }) {
   return (
     <div>
       {/* Category filter */}
-      <div className="mb-12 flex flex-wrap gap-x-7 gap-y-3">
-        {categories.map((c) => (
-          <button
-            key={c.slug}
-            type="button"
-            onClick={() => {
-              setActive(c.slug);
-              setIndex(null);
-            }}
-            className={`link-underline pb-0.5 font-mono text-[11px] uppercase tracking-[0.25em] transition-colors ${
-              active === c.slug ? "is-active text-bone" : "text-ash hover:text-bone"
-            }`}
-          >
-            {c.label}
-          </button>
-        ))}
-        <span className="ml-auto hidden font-mono text-[11px] uppercase tracking-[0.25em] text-ash md:inline">
-          {filtered.length} works
-        </span>
-      </div>
+      <Reveal delay={40}>
+        <div className="mb-12 flex flex-wrap gap-x-7 gap-y-3">
+          {categories.map((c) => (
+            <button
+              key={c.slug}
+              type="button"
+              onClick={() => {
+                setActive(c.slug);
+                setIndex(null);
+              }}
+              className={`link-underline pb-0.5 font-mono text-[11px] uppercase tracking-[0.25em] transition-colors ${
+                active === c.slug ? "is-active text-bone" : "text-ash hover:text-bone"
+              }`}
+            >
+              {c.label}
+            </button>
+          ))}
+          <span className="ml-auto hidden font-mono text-[11px] uppercase tracking-[0.25em] text-ash md:inline">
+            {filtered.length} works
+          </span>
+        </div>
+      </Reveal>
 
       {/* Masonry grid */}
       <div className="columns-1 gap-5 sm:columns-2 lg:columns-3">
         {filtered.map((item, i) => (
-          <button
+          <Reveal
             key={item.id || item.src}
-            type="button"
-            onClick={() => open(i)}
-            className="gallery-item group mb-5 block w-full break-inside-avoid text-left"
-            aria-label={`Open ${item.title} full size`}
+            delay={Math.min((i % 6) * 45, 225)}
+            className="mb-5 block w-full break-inside-avoid"
           >
-            <div
-              className="relative w-full overflow-hidden border border-bone/10 bg-coal transition-colors duration-500 group-hover:border-blood/60"
-              style={{ aspectRatio: `${item.w} / ${item.h}` }}
+            <button
+              type="button"
+              onClick={() => open(i)}
+              className="gallery-item group block w-full text-left"
+              aria-label={`Open ${item.title} full size`}
             >
-              {failedImages.has(item.id) ? (
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-                  <span className="font-mono text-xs text-ash">Image unavailable</span>
-                  <span
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setFailedImages((prev) => {
-                        const next = new Set(prev);
-                        next.delete(item.id);
-                        return next;
-                      });
+              <div
+                className="relative w-full overflow-hidden border border-bone/10 bg-coal transition-colors duration-500 group-hover:border-blood/60"
+                style={{ aspectRatio: `${item.w} / ${item.h}` }}
+              >
+                {failedImages.has(item.id) ? (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                    <span className="font-mono text-xs text-ash">Image unavailable</span>
+                    <span
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setFailedImages((prev) => {
+                          const next = new Set(prev);
+                          next.delete(item.id);
+                          return next;
+                        });
+                      }}
+                      role="button"
+                      tabIndex={0}
+                      className="mt-2 inline-block border border-bone/20 px-2 py-1 font-mono text-[9px] uppercase tracking-wider text-bone hover:border-blood hover:text-blood"
+                    >
+                      Retry
+                    </span>
+                  </div>
+                ) : (
+                  <Image
+                    src={item.src}
+                    alt={item.alt || item.title}
+                    fill
+                    loading="lazy"
+                    decoding="async"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    onError={() => {
+                      setFailedImages((prev) => new Set(prev).add(item.id));
                     }}
-                    role="button"
-                    tabIndex={0}
-                    className="mt-2 inline-block border border-bone/20 px-2 py-1 font-mono text-[9px] uppercase tracking-wider text-bone hover:border-blood hover:text-blood"
-                  >
-                    Retry
-                  </span>
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-x-0 bottom-0 translate-y-3 p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  <p className="font-display text-sm font-bold uppercase tracking-wide text-bone">
+                    {item.title}
+                  </p>
+                  <p className="mt-1 flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-ash">
+                    <span className="h-1 w-1 bg-blood" />
+                    {item.category}
+                  </p>
                 </div>
-              ) : (
-                <Image
-                  src={item.src}
-                  alt={item.alt || item.title}
-                  fill
-                  loading="lazy"
-                  decoding="async"
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                  onError={() => {
-                    setFailedImages((prev) => new Set(prev).add(item.id));
-                  }}
-                />
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <div className="absolute inset-x-0 bottom-0 translate-y-3 p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                <p className="font-display text-sm font-bold uppercase tracking-wide text-bone">
-                  {item.title}
-                </p>
-                <p className="mt-1 flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-ash">
-                  <span className="h-1 w-1 bg-blood" />
-                  {item.category}
-                </p>
+                <span className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center border border-bone/20 bg-ink/60 font-mono text-sm text-bone opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:backdrop-blur">
+                  +
+                </span>
               </div>
-              <span className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center border border-bone/20 bg-ink/60 font-mono text-sm text-bone opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:backdrop-blur">
-                +
-              </span>
-            </div>
-          </button>
+            </button>
+          </Reveal>
         ))}
       </div>
 

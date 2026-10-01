@@ -49,6 +49,8 @@ if (homeHasServerImage || galleryHasServerImage) {
 // 3. Confirm representative images exist in out/
 const representativeImages = [
   "jeizi-logo.png",
+  "jeizi-zamora.png",
+  "jeizi-zamora.webp",
   "projects/shirt-preview.png",
   "projects/shirt-preview.webp"
 ];

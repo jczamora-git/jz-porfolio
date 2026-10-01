@@ -21,6 +21,11 @@ export const metadata: Metadata = {
   title: "JEIZI PRODUCTIONS — Graphic Designer & Art Director",
   description:
     "Portfolio of Jeizi — graphic designer and founder of Jeizi Productions, crafting bold identities, campaigns, and visuals that refuse to be ignored.",
+  icons: {
+    icon: "/jeizi-logo.png",
+    shortcut: "/jeizi-logo.png",
+    apple: "/jeizi-logo.png",
+  },
 };
 
 export default function RootLayout({

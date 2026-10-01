@@ -30,26 +30,27 @@ export default function About() {
       </Reveal>
 
       <div className="grid gap-16 md:grid-cols-[2fr_3fr]">
-        {/* Brand mark block */}
+        {/* Portrait block */}
         <Reveal delay={100}>
           <div className="relative aspect-[3/4] overflow-hidden border border-bone/10 bg-coal">
             <div className="absolute inset-0">
               <Image
-                src="/jeizi-logo.png"
-                alt="Jeizi Productions logo"
+                src="/jeizi-zamora.webp"
+                alt="Jeizi Zamora"
                 fill
                 sizes="(min-width: 768px) 40vw, 100vw"
-                className="object-contain"
+                className="object-cover object-top"
+                loading="lazy"
+                decoding="async"
               />
             </div>
-            <div className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rotate-45 border-2 border-blood/80" />
             <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-ink/70 p-5 font-mono text-[10px] uppercase tracking-[0.25em] text-bone backdrop-blur">
               <span>Jeizi Productions</span>
               <span className="text-blood">Est. 2018</span>
             </div>
           </div>
           <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.25em] text-ash">
-            Fig. 01 — The mark.
+            Fig. 01 — Jeizi Zamora.
           </p>
         </Reveal>
 

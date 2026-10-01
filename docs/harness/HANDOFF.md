@@ -2,39 +2,44 @@
 
 HANDOFF_VERSION: 1
 UPDATED_AT: 2026-10-01
-AUDITED_COMMIT: ac14090
-CURRENT_HEAD: ac14090
+AUDITED_COMMIT: 9529cec
+CURRENT_HEAD: 9529cec
 STATE: READY
 
 ## CURRENT STATUS
 
-Homepage featured images and marquee animation have been optimized and restored.
-- FEATURED IMAGE STRATEGY: Generated WebP derivatives for homepage cards via `scripts/generate-home-derivatives.mjs` (quality 82, 1000x1000px, 85.5% byte reduction from 7.22 MB to 1.05 MB).
-- LCP: First visible card `CMO — CALAPAN MOBILE ESPORTS` (`/projects/cmo-profile.webp`) prioritized with `priority` and `loading="eager"`; below-the-fold cards use `loading="lazy"` and `decoding="async"`.
-- MARQUEE: Restored continuous CSS-only GPU transform animation (`translate3d(-50%, 0, 0)`, `25s linear infinite`, `will-change: transform`). Dual-track with `shrink-0` and `aria-hidden="true"` on duplicate. Preserved `@media (prefers-reduced-motion: reduce)` accessibility.
+UI refinement tasks completed:
+- Reused top navigation/header (`Navbar`) on `/gallery/` with cross-route anchors (`/#work`, `/gallery/`, `/#about`, `/#services`, `/#contact`, `/` for logo) and active route detection.
+- Configured `public/jeizi-logo.png` as the browser tab favicon via Next.js metadata in `app/layout.tsx` (removed duplicate `app/icon.svg`).
+- Replaced the About section logo visual with `public/jeizi-zamora.png` (using optimized WebP derivative `public/jeizi-zamora.webp` at 49.7 KB, preserving master PNG) with object-cover and alt="Jeizi Zamora".
+- Removed red diamond overlay from the About visual.
+- Polished scroll reveal animations using upgraded singleton `Reveal.tsx` IntersectionObserver system across homepage sections and gallery grid items, respecting `@media (prefers-reduced-motion: reduce)`.
 
 ## CURRENT GOAL
 
-Maintain homepage performance and monitor user deployment.
+Ready to commit and deploy UI refinements.
 
 ## VERIFIED FACTS
 
-- Featured images: Total encoded size reduced from 7,572,202 bytes (7.22 MB) to 1,097,904 bytes (1.05 MB) — 85.5% byte savings.
-- Largest featured image: `event-preview` reduced from 2.04 MB (`.png`) to 296 KB (`.webp`).
-- LCP prioritized image: `/projects/cmo-profile.webp` (28 KB).
-- Marquee: CSS-only dual-track loop (`translate3d(-50%, 0, 0)`), pauses on hover, zero JavaScript animation overhead, zero layout shift.
-- Reduced motion: Supported via `@media (prefers-reduced-motion: reduce)` without breaking default `no-preference` playback.
-- Repeatable derivative script: `scripts/generate-home-derivatives.mjs` (does NOT run during `npm run build`).
-- Static export verified: All routes and `.webp` assets pass static export verification.
+- Top navigation: Reused `components/Navbar.tsx` on both `/` and `/gallery/`; gallery links cleanly route back to homepage anchors.
+- Favicon: Declared in `app/layout.tsx` `metadata.icons` (`icon`, `shortcut`, `apple` -> `/jeizi-logo.png`); rendered as `<link rel="icon" href="/jeizi-logo.png">` in static export.
+- About section: Displaying Jeizi's portrait (`/jeizi-zamora.webp`), 49.7 KB (97% byte savings vs master PNG), lazy loaded, no red diamond shape.
+- Scroll animation: Shared IntersectionObserver in `components/Reveal.tsx` with hardware-accelerated transforms (`translate3d`), no heavy external dependencies, subtle row-capped stagger (`(i % 6) * 45ms`) on gallery cards.
+- Accessibility / Reduced motion: `prefers-reduced-motion: reduce` renders elements immediately visible without transitions or transforms.
+- Marquee: Preserved continuous CSS transform animation (`translate3d(-50%, 0, 0)`).
+- Static export: Passes with all routes and assets valid.
 
 ## LAST CHANGES
 
-- `scripts/generate-home-derivatives.mjs`: Created script to generate WebP derivatives (quality 82, max 1600px edge).
-- `public/projects/*.webp`: Generated 6 lightweight WebP derivatives.
-- `components/Works.tsx`: Updated project sources to `.webp`; added `priority` and eager loading to LCP card, lazy loading to others.
-- `components/Marquee.tsx`: Restructured into dual `shrink-0` tracks with `aria-hidden="true"` on duplicated items.
-- `app/globals.css`: Updated `@keyframes marquee` to `translate3d(0, 0, 0)` -> `translate3d(-50%, 0, 0)` with `will-change: transform`.
-- `scripts/verify-static-output.mjs`: Added `projects/shirt-preview.webp` to static verification checklist.
+- `components/Navbar.tsx`: Added Next.js `Link` and `usePathname` for cross-route navigation and active state between `/` and `/gallery/`.
+- `app/gallery/page.tsx`: Added `<Navbar />`, `<Footer />`, and `.grain` overlay matching homepage aesthetics.
+- `app/layout.tsx`: Configured `metadata.icons` pointing to `/jeizi-logo.png`.
+- `app/icon.svg`: Removed so Next.js static metadata serves `jeizi-logo.png`.
+- `components/About.tsx`: Swapped image to `/jeizi-zamora.webp` (alt="Jeizi Zamora"), removed red diamond overlay.
+- `public/jeizi-zamora.webp`: Generated lightweight WebP derivative from `public/jeizi-zamora.png`.
+- `components/Reveal.tsx`: Refactored to singleton IntersectionObserver with configurable direction, distance, duration, and full reduced-motion support.
+- `components/gallery/GalleryGrid.tsx`: Wrapped filter and masonry gallery cards in lightweight `<Reveal>` with row-capped delay.
+- `scripts/verify-static-output.mjs`: Added `jeizi-zamora.png` and `jeizi-zamora.webp` to static asset checks.
 - `docs/harness/HANDOFF.md` & `docs/harness/CHANGELOG.md`: Updated.
 
 ## BLOCKERS / OPEN ISSUES
@@ -43,28 +48,27 @@ Maintain homepage performance and monitor user deployment.
 
 ## READ NEXT
 
-- `components/Works.tsx`
-- `components/Marquee.tsx`
-- `app/globals.css`
-- `scripts/generate-home-derivatives.mjs`
+- `components/Navbar.tsx`
+- `app/gallery/page.tsx`
+- `components/About.tsx`
+- `components/Reveal.tsx`
+- `components/gallery/GalleryGrid.tsx`
 
 ## NEXT ACTION
 
-Commit and push homepage performance improvements to Git.
+Commit and push UI refinements to Git.
 
 ## DO NOT REPEAT
 
-- Marquee root-cause investigation (root cause was lack of `shrink-0`/GPU translate3d + OS-level `prefers-reduced-motion`).
-- Featured image source tracing (`public/projects/*` via `components/Works.tsx`).
-- Manual Drive file-ID discovery.
-- Previous gallery performance audit.
+- Navbar reuse investigation (already shared and cross-navigating via Next.js `Link`).
+- About image source investigation (`public/jeizi-zamora.webp` with `public/jeizi-zamora.png` master).
+- Favicon configuration investigation (configured in `app/layout.tsx` metadata with `app/icon.svg` deleted).
+- Scroll reveal architecture investigation (singleton observer in `components/Reveal.tsx`).
 
 ## LAST VERIFICATION
 
 - `npm run harness:status` ✅ (clean)
-- `npm run verify` ✅ (TypeScript + ESLint pass)
+- `npm run verify` ✅ (TypeScript + ESLint pass with 0 errors/warnings)
 - `npm run build` ✅ (Turbopack static export pass)
-- `npm run verify:static` ✅ (routes, WebP assets, and unoptimized pass)
+- `npm run verify:static` ✅ (all routes, favicon, and portrait assets pass)
 - `npm run gallery:audit` ✅ (79 Drive mapped, 0 local, 0 unresolved)
-
-

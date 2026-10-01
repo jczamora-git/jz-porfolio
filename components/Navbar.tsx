@@ -1,17 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const links = [
   { label: "WORK", href: "/#work" },
-  { label: "GALLERY", href: "/gallery" },
+  { label: "GALLERY", href: "/gallery/" },
   { label: "ABOUT", href: "/#about" },
   { label: "SERVICES", href: "/#services" },
   { label: "CONTACT", href: "/#contact" },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -47,8 +50,8 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:h-20 md:px-10">
-        <a
-          href="#top"
+        <Link
+          href="/"
           className="flex items-center"
           aria-label="Jeizi Productions — home"
         >
@@ -60,28 +63,35 @@ export default function Navbar() {
             priority
             className="h-9 w-auto md:h-11"
           />
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
-            <li key={l.label}>
-              <a
-                href={l.href}
-                className="link-underline font-mono text-[11px] tracking-[0.25em] text-ash transition-colors hover:text-bone"
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
+          {links.map((l) => {
+            const isGallery = l.href.startsWith("/gallery");
+            const isActive = isGallery ? pathname?.startsWith("/gallery") : false;
+
+            return (
+              <li key={l.label}>
+                <a
+                  href={l.href}
+                  className={`link-underline font-mono text-[11px] tracking-[0.25em] transition-colors ${
+                    isActive ? "is-active text-bone" : "text-ash hover:text-bone"
+                  }`}
+                >
+                  {l.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex items-center gap-4">
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             className="hidden bg-blood px-5 py-2.5 font-mono text-[11px] tracking-[0.2em] text-ink transition-colors hover:bg-bone md:inline-block"
           >
             LET&apos;S TALK ↗
-          </a>
+          </Link>
           <button
             onClick={() => setOpen(!open)}
             aria-label={open ? "Close menu" : "Open menu"}
@@ -135,13 +145,13 @@ export default function Navbar() {
           ))}
         </ul>
         <div className="flex items-center justify-between">
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             onClick={() => setOpen(false)}
             className="bg-blood px-6 py-3 font-mono text-xs tracking-[0.2em] text-ink"
           >
             LET&apos;S TALK ↗
-          </a>
+          </Link>
           <p className="font-mono text-[10px] tracking-widest text-ash">
             AVAILABLE FOR WORK
           </p>

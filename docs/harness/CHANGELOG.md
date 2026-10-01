@@ -3,6 +3,20 @@
 Append one compact entry per completed coding task. Newest entry first.
 Do not copy raw logs.
 
+## 2026-10-01 — UI Refinements: Shared Navbar, Favicon, About Portrait & Scroll Reveals
+
+**Goal:** Reuse top navigation on `/gallery/`, configure `jeizi-logo.png` favicon, display Jeizi's portrait without red diamond in About section, and polish scroll reveals across the site.
+
+**Changed:** `components/Navbar.tsx`, `app/gallery/page.tsx`, `app/layout.tsx`, `app/icon.svg` (deleted), `components/About.tsx`, `public/jeizi-zamora.webp`, `components/Reveal.tsx`, `components/gallery/GalleryGrid.tsx`, `scripts/verify-static-output.mjs`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:** Reused `Navbar` on `/gallery/` with cross-route anchors (`/#work`, `/#about`, etc.) and active state. Configured `metadata.icons` for `jeizi-logo.png` favicon. Replaced About logo with `public/jeizi-zamora.webp` (49.7 KB, 97% byte reduction, preserving master PNG) and removed red diamond overlay. Upgraded `Reveal.tsx` to a singleton IntersectionObserver with GPU `translate3d`, subtle gallery card stagger (`(i % 6) * 45ms`), and full `prefers-reduced-motion: reduce` compliance.
+
+**Verified:** `npm run verify` ✅; `npm run build` ✅; `npm run verify:static` ✅; `npm run gallery:audit` ✅; `npm run harness:status` ✅.
+
+**Architecture impact:** Cross-route navigation, metadata favicon resolution, asset optimization, and singleton scroll animation system.
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
 ## 2026-10-01 — Optimize Homepage Featured Images & Restore Marquee
 
 **Goal:** Accelerate homepage featured project image delivery by 85.5% using WebP derivatives and restore continuous CSS-only marquee animation.
