@@ -49,11 +49,17 @@ if (homeHasServerImage || galleryHasServerImage) {
 // 3. Confirm representative images exist in out/
 const representativeImages = [
   "jeizi-logo.png",
-  "projects/shirt-preview.png",
-  "gallery/shirts/5-1.png",
-  "gallery/event/bracket.png",
-  "gallery/logo/emerald-harmony-logo.png"
+  "projects/shirt-preview.png"
 ];
+
+// If local gallery assets were built into out/, check representative sample
+if (existsSync(join(outDir, "gallery"))) {
+  representativeImages.push(
+    "gallery/shirts/5-1.png",
+    "gallery/event/bracket.png",
+    "gallery/logo/emerald-harmony-logo.png"
+  );
+}
 
 for (const img of representativeImages) {
   const imgPath = join(outDir, img);

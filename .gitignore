@@ -20,6 +20,9 @@
 # production
 /build
 
+# media & gallery assets (served remotely in production)
+/public/gallery/
+
 # misc
 .DS_Store
 *.pem
