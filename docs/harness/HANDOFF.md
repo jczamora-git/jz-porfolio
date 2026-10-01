@@ -37,7 +37,7 @@ Ready to commit and deploy UI refinements.
 - `app/icon.svg`: Removed so Next.js static metadata serves `jeizi-logo.png`.
 - `components/About.tsx`: Swapped image to `/jeizi-zamora.webp` (alt="Jeizi Zamora"), removed red diamond overlay.
 - `public/jeizi-zamora.webp`: Generated lightweight WebP derivative from `public/jeizi-zamora.png`.
-- `components/Reveal.tsx`: Refactored to singleton IntersectionObserver with configurable direction, distance, duration, and full reduced-motion support.
+- `components/Reveal.tsx`: Fixed hydration mismatch by setting `useState(false)` unconditionally and letting CSS `@media (prefers-reduced-motion: reduce)` override styles with `!important`. Refactored to singleton IntersectionObserver with configurable direction, distance, duration, and fallback `requestAnimationFrame`.
 - `components/gallery/GalleryGrid.tsx`: Wrapped filter and masonry gallery cards in lightweight `<Reveal>` with row-capped delay.
 - `scripts/verify-static-output.mjs`: Added `jeizi-zamora.png` and `jeizi-zamora.webp` to static asset checks.
 - `docs/harness/HANDOFF.md` & `docs/harness/CHANGELOG.md`: Updated.

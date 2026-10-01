@@ -15,7 +15,7 @@ let sharedObserver: IntersectionObserver | null = null;
 const observerCallbacks = new WeakMap<Element, () => void>();
 
 function getSharedObserver(): IntersectionObserver | null {
-  if (typeof window === "undefined") return null;
+  if (typeof window === "undefined" || !("IntersectionObserver" in window)) return null;
   if (!sharedObserver) {
     sharedObserver = new IntersectionObserver(
       (entries) => {
@@ -44,12 +44,7 @@ export default function Reveal({
   className = "",
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(() => {
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return true;
-    }
-    return false;
-  });
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -61,7 +56,8 @@ export default function Reveal({
 
     const observer = getSharedObserver();
     if (!observer) {
-      return;
+      const raf = requestAnimationFrame(() => setVisible(true));
+      return () => cancelAnimationFrame(raf);
     }
 
     observerCallbacks.set(el, () => setVisible(true));

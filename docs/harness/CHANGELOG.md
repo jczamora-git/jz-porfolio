@@ -3,6 +3,20 @@
 Append one compact entry per completed coding task. Newest entry first.
 Do not copy raw logs.
 
+## 2026-10-01 — Fix Hydration Mismatch in Reveal Component
+
+**Goal:** Eliminate client hydration mismatch caused by server/client branch in `Reveal.tsx`.
+
+**Changed:** `components/Reveal.tsx`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:** Set `useState(false)` unconditionally for initial SSR and client render matching. Delegated `prefers-reduced-motion: reduce` styling strictly to CSS `@media (prefers-reduced-motion: reduce)` (`!important` opacity/transform/transition overrides), eliminating hydration divergence.
+
+**Verified:** `npm run verify` ✅; `npm run build` ✅; `npm run verify:static` ✅; `npm run harness:status` ✅.
+
+**Architecture impact:** Hydration stability for scroll-reveal components.
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
 ## 2026-10-01 — UI Refinements: Shared Navbar, Favicon, About Portrait & Scroll Reveals
 
 **Goal:** Reuse top navigation on `/gallery/`, configure `jeizi-logo.png` favicon, display Jeizi's portrait without red diamond in About section, and polish scroll reveals across the site.
