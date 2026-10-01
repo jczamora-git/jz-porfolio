@@ -4,10 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:webpack": "next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "gallery:build": "node scripts/build-gallery-data.mjs"
+    "gallery:build": "node scripts/build-gallery-data.mjs",
+    "gallery:audit": "node scripts/audit-gallery-sources.mjs",
+    "verify": "eslint && tsc --noEmit",
+    "deploy:audit": "node scripts/deploy-audit.mjs",
+    "verify:static": "node scripts/verify-static-output.mjs"
   },
   "dependencies": {
     "next": "16.2.12",
