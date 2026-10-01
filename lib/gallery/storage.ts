@@ -51,6 +51,7 @@ export type GalleryManifestEntry = {
   title: string;
   categorySlug: string;
   category?: string;
+  filename?: string;
   alt?: string;
   w: number;
   h: number;

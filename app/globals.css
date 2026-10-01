@@ -74,15 +74,23 @@ body {
 /* Marquee */
 @keyframes marquee {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
+
+.marquee-track,
 .animate-marquee {
-  animation: marquee 26s linear infinite;
+  display: flex;
+  width: max-content;
+  flex-shrink: 0;
+  will-change: transform;
+  animation: marquee 25s linear infinite;
 }
+
+.marquee-track:hover,
 .animate-marquee:hover {
   animation-play-state: paused;
 }
@@ -122,6 +130,7 @@ body {
     transform: none !important;
     transition: none !important;
   }
+  .marquee-track,
   .animate-marquee {
     animation: none !important;
   }

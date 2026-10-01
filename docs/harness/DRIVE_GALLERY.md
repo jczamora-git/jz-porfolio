@@ -187,10 +187,42 @@ These are DISPLAY TITLES. They are not unique identifiers. Duplicate display tit
 
 - Folder hierarchy: **KNOWN & LOCKED** (Main + 6 Category folders)
 - 79-work collection structure: **KNOWN & LOCKED**
-- Individual Google Drive file IDs: **UNVERIFIED / PENDING** (0 verified / 79 unresolved)
-- The canonical manifest currently requires per-file Drive metadata to be populated.
+- Drive enumeration workflow: **AUTOMATED & IMPLEMENTED**
+- Drive file IDs are obtained automatically using the bulk enumerator (`scripts/google-drive-enumerator.gs` + `scripts/import-drive-manifest.mjs`), NEVER collected manually.
+- Canonical ID map: `lib/gallery/drive-files.ts`
+- Authoritative manifest: `lib/gallery/manifest.ts`
 
 ---
+
+## Google Drive Bulk Mapping Workflow
+
+To populate or refresh Drive file IDs in bulk without opening individual files:
+
+1. Open [script.google.com](https://script.google.com) while signed in to the Google account that owns the folders.
+2. Create a temporary Apps Script project.
+3. Paste `scripts/google-drive-enumerator.gs`.
+4. Run `exportJeiziGalleryManifest()`.
+5. Authorize read access to Drive when prompted.
+6. Copy the generated JSON block from the execution log.
+7. Save it locally as `drive-files.json`.
+8. Run:
+   ```bash
+   node scripts/import-drive-manifest.mjs drive-files.json
+   ```
+9. Run gallery audit:
+   ```bash
+   npm run gallery:audit
+   ```
+10. Build:
+    ```bash
+    npm run build
+    ```
+11. Verify static output:
+    ```bash
+    npm run verify:static
+    ```
+
+The user only has to run this workflow ONCE. Manual per-file collection is strictly prohibited.
 
 ## Storage Architecture Contract
 

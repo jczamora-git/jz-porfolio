@@ -49,7 +49,8 @@ if (homeHasServerImage || galleryHasServerImage) {
 // 3. Confirm representative images exist in out/
 const representativeImages = [
   "jeizi-logo.png",
-  "projects/shirt-preview.png"
+  "projects/shirt-preview.png",
+  "projects/shirt-preview.webp"
 ];
 
 // If local gallery assets were built into out/, check representative sample

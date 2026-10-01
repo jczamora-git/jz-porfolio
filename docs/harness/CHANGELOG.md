@@ -3,6 +3,34 @@
 Append one compact entry per completed coding task. Newest entry first.
 Do not copy raw logs.
 
+## 2026-10-01 — Optimize Homepage Featured Images & Restore Marquee
+
+**Goal:** Accelerate homepage featured project image delivery by 85.5% using WebP derivatives and restore continuous CSS-only marquee animation.
+
+**Changed:** `scripts/generate-home-derivatives.mjs`, `public/projects/*.webp`, `components/Works.tsx`, `components/Marquee.tsx`, `app/globals.css`, `scripts/verify-static-output.mjs`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:** Converted 6 oversized PNGs (7.22 MB) into lightweight WebP derivatives (1.05 MB) via Sharp (85.5% byte reduction). Prioritized first card `cmo-profile.webp` for LCP; lazy loaded remaining cards. Restored continuous marquee with dual `shrink-0` tracks, `aria-hidden="true"` on duplicate, and GPU `translate3d(-50%, 0, 0)` animation while preserving `prefers-reduced-motion: reduce`.
+
+**Verified:** `npm run verify` ✅; `npm run build` ✅; `npm run verify:static` ✅; `npm run gallery:audit` ✅.
+
+**Architecture impact:** Static asset optimization and CSS compositor animation. No layout or design alterations.
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
+## 2026-10-01 — Automated Google Drive Bulk Enumerator & Importer
+
+**Goal:** Eliminate manual per-file collection of 79 Google Drive IDs by creating a one-time Google Apps Script enumerator and repository importer.
+
+**Changed:** `scripts/google-drive-enumerator.gs`, `scripts/import-drive-manifest.mjs`, `lib/gallery/drive-files.ts`, `lib/gallery/storage.ts`, `lib/gallery/manifest.ts`, `docs/harness/DRIVE_GALLERY.md`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:** Created `scripts/google-drive-enumerator.gs` to perform read-only enumeration of the 6 category folders, validate counts (79 total), and output JSON. Created `scripts/import-drive-manifest.mjs` to validate category counts, reject duplicate IDs, verify `social/story-2.png`, and update `lib/gallery/drive-files.ts` and `lib/gallery/manifest.ts`.
+
+**Verified:** `npm run verify` ✅; `npm run gallery:audit` ✅; `npm run build` ✅; `npm run verify:static` ✅.
+
+**Architecture impact:** Standardized Drive data pipeline from bulk script enumeration to canonical manifest.
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
 ## 2026-10-01 — Migrate 79 Gallery Works to Remote Google Drive Storage
 
 **Goal:** Resolve production 404s for local gallery images by mapping all 79 works to verified individual Google Drive file IDs and adding persistent client caching.

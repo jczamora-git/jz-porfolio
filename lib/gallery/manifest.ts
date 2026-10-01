@@ -14,7 +14,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1r0ChOf2SJeigtrJkZ0fKJXPFoyA5WIaw"
-    }
+    },
+    "filename": "certificate.png"
   },
   {
     "id": "featured-cmo-banner",
@@ -27,7 +28,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "10OJzxrvfHgKChfPW6TMD8QzYxDVDZp_5"
-    }
+    },
+    "filename": "cmo-banner.png"
   },
   {
     "id": "featured-cmo-logo",
@@ -40,7 +42,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1wsxwK-yj8xZeHJIk0EqnAUdqS8fgdWyH"
-    }
+    },
+    "filename": "cmo-logo.png"
   },
   {
     "id": "featured-cmo-profile",
@@ -53,7 +56,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1zc6ox-MRbI9HgfzbMiu1T_5EHfOLV5SK"
-    }
+    },
+    "filename": "cmo-profile.png"
   },
   {
     "id": "featured-display",
@@ -66,7 +70,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1Pcwjpt8j6ettSDxD-9nTaDgM4v_76G7p"
-    }
+    },
+    "filename": "display.png"
   },
   {
     "id": "featured-start",
@@ -79,7 +84,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1SLV9kMZfLc8F9RT3TSQ-OTUgBAO_OIBz"
-    }
+    },
+    "filename": "start.png"
   },
   {
     "id": "event-battle-results-prev",
@@ -92,7 +98,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1wXOaXzSrpmPouWPlpS2UwFNd4beGbQRe"
-    }
+    },
+    "filename": "battle-results-prev.png"
   },
   {
     "id": "event-bracket",
@@ -105,7 +112,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1b7zUe9Dw-SK1qLKEMJo2ycrGCvszEx6K"
-    }
+    },
+    "filename": "bracket.png"
   },
   {
     "id": "event-display",
@@ -118,7 +126,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1YT04-00YfEt0X-qNWKLTb7dlmQANMADc"
-    }
+    },
+    "filename": "display.png"
   },
   {
     "id": "event-instant-replay-test",
@@ -131,7 +140,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "11QIfuwkLcAG5c1psALGrovgxnJ0x9z8B"
-    }
+    },
+    "filename": "instant-replay-test.png"
   },
   {
     "id": "event-loading-screen-prev",
@@ -144,7 +154,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1TGN2PDHXCIbjyfCfKjZPpPD8mnFMWSQw"
-    }
+    },
+    "filename": "loading-screen-prev.png"
   },
   {
     "id": "event-loading-screen-test",
@@ -157,7 +168,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1YtVEDK0TKoF0cl8XevZESoTyE2msl_rF"
-    }
+    },
+    "filename": "loading-screen-test.png"
   },
   {
     "id": "event-match-overlay-prev",
@@ -170,7 +182,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1l7huq6JUb0CIbEJdwC4y-X-cBTkFB-7K"
-    }
+    },
+    "filename": "match-overlay-prev.png"
   },
   {
     "id": "event-match-overlay",
@@ -183,7 +196,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1-QREpqIo2B-aigYtLuYWWo_0D7ok7ExB"
-    }
+    },
+    "filename": "match-overlay.png"
   },
   {
     "id": "event-match-sched",
@@ -196,7 +210,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "16ULVDVNRucl814vY9we9emEWR9jwndFA"
-    }
+    },
+    "filename": "match-sched.png"
   },
   {
     "id": "event-roster-prev",
@@ -209,7 +224,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1O_VJgt6A2sPJTjtmcm365DmEIGO0fYHo"
-    }
+    },
+    "filename": "roster-prev.png"
   },
   {
     "id": "logo-dce-logo",
@@ -222,7 +238,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1jnqnUpll8UqMeaypNhgaOCo6tFvcl0u4"
-    }
+    },
+    "filename": "dce-logo.png"
   },
   {
     "id": "logo-emerald-hamony-text",
@@ -235,7 +252,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1FyvWxZ3868XoEE83bShzlxHkpB-CrYIb"
-    }
+    },
+    "filename": "emerald-hamony-text.png"
   },
   {
     "id": "logo-emerald-harmony-logo",
@@ -248,7 +266,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1e2myhwHQCv_YDxL-_Hm36jNP5SyRbJmM"
-    }
+    },
+    "filename": "emerald-harmony-logo.png"
   },
   {
     "id": "logo-jeizi-production",
@@ -261,7 +280,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1jqYDObiu442H53QSHPe4LBbHtvVFenBQ"
-    }
+    },
+    "filename": "jeizi-production.png"
   },
   {
     "id": "logo-linguists-society-1",
@@ -274,7 +294,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1PcGfGQheb5I8Ihf1unNn7dqIpNWNAJdc"
-    }
+    },
+    "filename": "linguists-society-1.png"
   },
   {
     "id": "logo-lnk-kalap-cup-logo-textured",
@@ -287,7 +308,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1bFt9nLH7nSGhYSebQtLCoDeLHMooRpqs"
-    }
+    },
+    "filename": "lnk-kalap-cup-logo-textured.png"
   },
   {
     "id": "logo-lnk-naujan",
@@ -300,7 +322,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1ousUjj-qg1ASNn4qvoDqh3YSyL9FQK8_"
-    }
+    },
+    "filename": "lnk-naujan.png"
   },
   {
     "id": "logo-mibt-logo-1",
@@ -313,7 +336,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1XlwNOwpXRlObHToFXZJQVJOq_n2KPHWl"
-    }
+    },
+    "filename": "mibt-logo-1.png"
   },
   {
     "id": "logo-mlbb-balite-tournament-2025",
@@ -326,7 +350,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1TyxfiYdV7d0WlyZtfd2uGrrAiqzdpeKS"
-    }
+    },
+    "filename": "mlbb-balite-tournament-2025.png"
   },
   {
     "id": "logo-myfi-converge-invitational-logo-v2",
@@ -339,7 +364,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "19edpPnSgtUivCyka1l7n7tkidj4oC11Q"
-    }
+    },
+    "filename": "myfi-converge-invitational-logo-v2.png"
   },
   {
     "id": "logo-palhi-tournament-logo",
@@ -352,7 +378,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1RJ2oF2jhj9_VFnHP92P_pQb5YOTs5dqJ"
-    }
+    },
+    "filename": "palhi-tournament-logo.png"
   },
   {
     "id": "logo-sali-talon",
@@ -365,7 +392,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1Z_v63RmBDMLT2iQ-wyteuuZdoGAILZ31"
-    }
+    },
+    "filename": "sali-talon.png"
   },
   {
     "id": "logo-ultra-esports-text-1",
@@ -378,7 +406,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1ujiaj5rno9DgtgPhm_u_n2PzqW7n89a9"
-    }
+    },
+    "filename": "ultra-esports-text-1.png"
   },
   {
     "id": "print-board-champion",
@@ -391,7 +420,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1nJ5VR_swkQAd6MWdr9pMYXArZJXvje-x"
-    }
+    },
+    "filename": "board-champion.png"
   },
   {
     "id": "print-certificate-jeizi",
@@ -404,7 +434,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1HJmdGPNO-PMd_MLHYNZHjwxfd4JZ7gO9"
-    }
+    },
+    "filename": "certificate-jeizi.png"
   },
   {
     "id": "print-certificate-lnk",
@@ -417,7 +448,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1buAw7xNzxWsEY4yummr5YP_x4i4UQvDK"
-    }
+    },
+    "filename": "certificate-lnk.png"
   },
   {
     "id": "print-certificate-template",
@@ -430,7 +462,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1z1HO1l5BuD2-o8KuRpQzZzkPztvG_gkr"
-    }
+    },
+    "filename": "certificate-template.png"
   },
   {
     "id": "print-i-book-cover",
@@ -443,7 +476,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1oXaU--aWvVdTm1ReMoFVTyAQyu9yKOCe"
-    }
+    },
+    "filename": "i-book-cover.png"
   },
   {
     "id": "print-iii-iv-about-ver-4",
@@ -456,7 +490,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1NtWqKOu9MktBGCSSf-NElMiwnawpIHSn"
-    }
+    },
+    "filename": "iii-iv-about-ver-4.png"
   },
   {
     "id": "print-lpt-na-babbyy-kooo",
@@ -469,7 +504,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1zIYgcdBY3FO-qOFM7a1I3Ls46-0cKge6"
-    }
+    },
+    "filename": "lpt-na-babbyy-kooo.png"
   },
   {
     "id": "print-plake",
@@ -482,7 +518,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "19Q2-1WY2Bv8s5P_xEeu1kuZ51lhdYvMn"
-    }
+    },
+    "filename": "plake.png"
   },
   {
     "id": "print-tarp-design-v2",
@@ -495,7 +532,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1lYaxwtgIW84XGP8nZyF3IC2cvuz3SVBP"
-    }
+    },
+    "filename": "tarp-design-v2.png"
   },
   {
     "id": "social-1-day",
@@ -508,7 +546,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1-iea9wuxLIXSilkk_BVTs7oY1o_VzRB4"
-    }
+    },
+    "filename": "1-day.png"
   },
   {
     "id": "social-5",
@@ -521,7 +560,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "15H25mvVcW4A0_R8q2YQPVqbeO9EehBAO"
-    }
+    },
+    "filename": "5.png"
   },
   {
     "id": "social-6",
@@ -534,7 +574,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1j23mIX7N4050Cd9eLw4AF6LnSOfLLEEn"
-    }
+    },
+    "filename": "6.png"
   },
   {
     "id": "social-7",
@@ -547,7 +588,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "11BvS_ZsFOll8UWugsmBIRJe_asDShbw0"
-    }
+    },
+    "filename": "7.png"
   },
   {
     "id": "social-11",
@@ -560,7 +602,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1vu7FXbJ6UtXAITIOcCC8vclt4Fs--oEV"
-    }
+    },
+    "filename": "11.png"
   },
   {
     "id": "social-12",
@@ -573,7 +616,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1G86BGADA2hVwfViCM_-lzo0lp3qDoQVx"
-    }
+    },
+    "filename": "12.png"
   },
   {
     "id": "social-15",
@@ -586,7 +630,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1nPAjWF6lwbeVCVKYjQ9ycCJuhwt_DSKY"
-    }
+    },
+    "filename": "15.png"
   },
   {
     "id": "social-16",
@@ -599,7 +644,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "12MGj4-zKzTrKTgYyOeKxJ3jPLS9fwb50"
-    }
+    },
+    "filename": "16.png"
   },
   {
     "id": "social-17",
@@ -612,7 +658,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1CiU-zEP1PoABFHcCqTJSVlky8hlBx2i3"
-    }
+    },
+    "filename": "17.png"
   },
   {
     "id": "social-18",
@@ -625,7 +672,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1SeS9LNFnTgfAH3dN4_66aUCxbzOMq4B2"
-    }
+    },
+    "filename": "18.png"
   },
   {
     "id": "social-cover-photo",
@@ -638,7 +686,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1roQV_ZEnqx1ytOPT0IHWMK4a5QLrRyZt"
-    }
+    },
+    "filename": "cover-photo.png"
   },
   {
     "id": "social-profile-pic-2",
@@ -651,7 +700,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1t5nocCiNC_LjNRz6VH8ac6PnxIknUypU"
-    }
+    },
+    "filename": "profile-pic-2.png"
   },
   {
     "id": "social-pubmat",
@@ -664,7 +714,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1yfk2dBhFjpJnctXF566OLgTZM6Gp0jwx"
-    }
+    },
+    "filename": "pubmat.png"
   },
   {
     "id": "social-pubmatlnk",
@@ -677,7 +728,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1ZNzKFxmMLqlz1mb2xRHonlXc13Otd5ga"
-    }
+    },
+    "filename": "pubmatlnk.png"
   },
   {
     "id": "social-sk-interbarangay-mlb",
@@ -690,7 +742,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "18FJcDZFKGC6LT7gcGK0zyBHOP_8U8hPG"
-    }
+    },
+    "filename": "sk-interbarangay-mlb.png"
   },
   {
     "id": "social-standings",
@@ -703,7 +756,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1OJY2sBOsISWnvZOiJQV5Asf91gpFgS_4"
-    }
+    },
+    "filename": "standings.png"
   },
   {
     "id": "social-story-1",
@@ -716,7 +770,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1wLa1-jqj93Vxz0ANf0RtmcVZ38468eA5"
-    }
+    },
+    "filename": "story-1.png"
   },
   {
     "id": "social-story-2",
@@ -729,7 +784,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "16z00-J_D9E0-pkscMOmjBKhHfK_miqdX"
-    }
+    },
+    "filename": "story-2.png"
   },
   {
     "id": "social-teams",
@@ -742,7 +798,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1XBObuEBoCzm-I2LcO5nOPT2xt15PiljE"
-    }
+    },
+    "filename": "teams.png"
   },
   {
     "id": "social-tournament-champ-copy",
@@ -755,7 +812,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "13jfzCFONOu1mpep0EDx62IKKM-HginkV"
-    }
+    },
+    "filename": "tournament-champ-copy.png"
   },
   {
     "id": "shirts-1",
@@ -768,7 +826,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1xJR6h7EM_5B6zaSp187Pg9mj2kEecj_w"
-    }
+    },
+    "filename": "1.png"
   },
   {
     "id": "shirts-2",
@@ -781,7 +840,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1c2A8S-TWYH31qj-CMwBFbt6bYMDS-xDr"
-    }
+    },
+    "filename": "2.png"
   },
   {
     "id": "shirts-3",
@@ -794,7 +854,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1QonnNVr3I_tZZB9xNfSRdUv5nSA7mEIX"
-    }
+    },
+    "filename": "3.png"
   },
   {
     "id": "shirts-4",
@@ -807,7 +868,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1-HSCJJufIlCs5hvfF2ycn94iP3nUHxiB"
-    }
+    },
+    "filename": "4.png"
   },
   {
     "id": "shirts-5-1",
@@ -820,7 +882,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1js3Zfb0NOKLpDeFQ82UYvu4dxTAvpx6k"
-    }
+    },
+    "filename": "5-1.png"
   },
   {
     "id": "shirts-5-2",
@@ -833,7 +896,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "11XJ-1YlkJ2-yArzEw2hWSf-MzWWhZTC_"
-    }
+    },
+    "filename": "5-2.png"
   },
   {
     "id": "shirts-6",
@@ -846,7 +910,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1PMThe4rNc0Uq4Ei0QAg4LmA-CtCsmNcB"
-    }
+    },
+    "filename": "6.png"
   },
   {
     "id": "shirts-6d-away",
@@ -859,7 +924,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1ILGuHvjgB71I_x0YH5S4yaBGlJgqW8bv"
-    }
+    },
+    "filename": "6d-away.png"
   },
   {
     "id": "shirts-6d-home",
@@ -872,7 +938,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1293x49t9MDrWyptZJuebGPDYr7_Hxufr"
-    }
+    },
+    "filename": "6d-home.png"
   },
   {
     "id": "shirts-7",
@@ -885,7 +952,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1kxaL12qufgojwtNEcJsy-tu-OrBcYAFJ"
-    }
+    },
+    "filename": "7.png"
   },
   {
     "id": "shirts-8",
@@ -898,7 +966,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1nPf6WTxcBTLDEN_HpwtScwEMO6KFsaJW"
-    }
+    },
+    "filename": "8.png"
   },
   {
     "id": "shirts-9",
@@ -911,7 +980,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1tZrioWZyk4Q8-sSXQS7iIJ19aHMl2psI"
-    }
+    },
+    "filename": "9.png"
   },
   {
     "id": "shirts-10",
@@ -924,7 +994,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1Nfr-gJCgnTWE-mNUkwKZZdt9_SJ0udZ5"
-    }
+    },
+    "filename": "10.png"
   },
   {
     "id": "shirts-apex-landscaping",
@@ -937,7 +1008,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1mZEJCCyxdAe8mtymqRfJeGMewFwDePvT"
-    }
+    },
+    "filename": "apex-landscaping.png"
   },
   {
     "id": "shirts-black-legits",
@@ -950,7 +1022,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1jZ39A5vkRr-uB94OGIQekPykCNaQu-Lg"
-    }
+    },
+    "filename": "black-legits.png"
   },
   {
     "id": "shirts-legits-club-shirt",
@@ -963,7 +1036,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1HkDELIG1-TGprrA8Uw4uLoSgZaGbI7mY"
-    }
+    },
+    "filename": "legits-club-shirt.png"
   },
   {
     "id": "shirts-lnk-mockup",
@@ -976,7 +1050,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1tUFvVp58SpnLlhgmwwZMhdWxqUmJpvoM"
-    }
+    },
+    "filename": "lnk-mockup.png"
   },
   {
     "id": "shirts-sample",
@@ -989,7 +1064,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1YhZctqsic4nyKbQfAc0AtLQGKayXcib8"
-    }
+    },
+    "filename": "sample.png"
   },
   {
     "id": "shirts-sk-fed-mockup",
@@ -1002,7 +1078,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1-dOd0jD23b_P5VMjLHkiy1hqzZ6ECdyl"
-    }
+    },
+    "filename": "sk-fed-mockup.png"
   },
   {
     "id": "shirts-usg-mcc",
@@ -1015,7 +1092,8 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1mFw7H_orapI1JZvd_von6sNk8rlrSSXl"
-    }
+    },
+    "filename": "usg-mcc.png"
   },
   {
     "id": "shirts-whitelegits",
@@ -1028,6 +1106,7 @@ export const galleryManifest: GalleryManifestEntry[] = [
     "storage": {
       "provider": "google-drive",
       "fileId": "1ioSZNPSpiqHwI7IUYEXevKVCYvNSmAWG"
-    }
+    },
+    "filename": "whitelegits.png"
   }
 ];

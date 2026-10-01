@@ -12,32 +12,32 @@ const projects: Project[] = [
   {
     title: "CMO — CALAPAN MOBILE ESPORTS",
     category: "Featured — Esports Organization Branding",
-    image: "/projects/cmo-profile.png",
+    image: "/projects/cmo-profile.webp",
   },
   {
     title: "EVENT & COMPETITION GRAPHICS",
     category: "Broadcast Overlays & Stage Screens",
-    image: "/projects/event-preview.png",
+    image: "/projects/event-preview.webp",
   },
   {
     title: "LOGO DESIGN",
     category: "Tournament & Organization Identities",
-    image: "/projects/logo-preview.png",
+    image: "/projects/logo-preview.webp",
   },
   {
     title: "PRINT DESIGN & COLLATERAL",
     category: "Certificates, Tarps & Publications",
-    image: "/projects/printed-preview.png",
+    image: "/projects/printed-preview.webp",
   },
   {
     title: "T-SHIRT & APPAREL",
     category: "Jerseys, Team Shirts & Merch",
-    image: "/projects/shirt-preview.png",
+    image: "/projects/shirt-preview.webp",
   },
   {
     title: "SOCIAL MEDIA GRAPHICS",
     category: "Pubmats, Stories & Standings",
-    image: "/projects/social-preview.png",
+    image: "/projects/social-preview.webp",
   },
 ];
 
@@ -76,6 +76,9 @@ export default function Works() {
                     fill
                     sizes="(min-width: 768px) 50vw, 100vw"
                     className="object-cover"
+                    priority={i === 0}
+                    loading={i === 0 ? "eager" : "lazy"}
+                    decoding="async"
                   />
                 </div>
                 <div className="absolute inset-0 bg-blood/0 transition-colors duration-500 group-hover:bg-blood/10" />
