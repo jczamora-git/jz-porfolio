@@ -3,6 +3,18 @@
 Append one compact entry per completed coding task. Newest entry first.
 Do not copy raw logs.
 
+## 2026-10-01 — Persist Google Drive Gallery Source of Truth
+
+**Goal:** Prevent future agents from rediscovering Drive/category/gallery metadata.
+
+**Changed:** `docs/harness/DRIVE_GALLERY.md`, `AGENTS.md`, `docs/harness/AUDIT.md`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:** Drive hierarchy, 6 category folder IDs, and the 79-work contract are now durable harness knowledge.
+
+**Architecture impact:** Documentation/harness only. No application behavior change.
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
 ## 2026-10-01 — Untrack Local Gallery Assets & Configure .gitignore
 
 **Goal:** Untrack 79 heavyweight local gallery assets (288.58 MB) from Git index and ignore `/public/gallery/` to reduce deployment build context.

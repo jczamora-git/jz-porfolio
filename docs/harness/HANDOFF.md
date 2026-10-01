@@ -2,62 +2,59 @@
 
 HANDOFF_VERSION: 1
 UPDATED_AT: 2026-10-01
-AUDITED_COMMIT: 6b9c8cd
-CURRENT_HEAD: 6b9c8cd
+AUDITED_COMMIT: 2e1ae03
+CURRENT_HEAD: 2e1ae03
 STATE: READY
 
 ## CURRENT STATUS
 
-1. `public/gallery/` (79 artwork files, 288.58 MB) has been completely untracked from Git (`git rm -r --cached public/gallery`) while remaining safely preserved on local disk.
-2. `/public/gallery/` is explicitly ignored in `.gitignore` and `.dockerignore`.
-3. Tracked gallery asset size is now 0 bytes.
-4. Next.js Static Export generates cleanly (`out/` without gallery is ~8.6 MB).
-5. All verification commands (`npm run verify`, `npm run build`, `npm run verify:static`, `npm run deploy:audit`) pass with code 0.
+Harness v2 is augmented with `docs/harness/DRIVE_GALLERY.md` as the durable source of truth. Production static export on Wasmer works cleanly, but deployed gallery images show broken alt text placeholders because individual Google Drive file IDs have not yet been mapped into `lib/gallery/manifest.ts`. `public/gallery/` is completely untracked and ignored in Git.
 
 ## CURRENT GOAL
 
-Redeploy the application and measure the remote build context transfer and memory consumption against the previous 606.12 MB / 1255 MB numbers.
+Verify and populate the individual Google Drive file IDs for all 79 gallery entries in `lib/gallery/manifest.ts` to restore image delivery in production.
 
 ## VERIFIED FACTS
 
-- `public/gallery` is ignored in both `.gitignore` and `.dockerignore`.
-- `public/gallery` is no longer tracked in the Git repository index (0 files tracked).
-- Local gallery artwork is preserved on disk for development and offline backup.
-- Static artifact `out/` drops from 297.42 MB to ~8.6 MB in environments without local gallery files.
-- Google Drive category folders are locked (Main folder: `1NP099TUQaYz7xs_wZ6QutJrZI5wl9kvi`, 79 expected works across 6 categories).
-- Drive file ID mapping in `lib/gallery/manifest.ts` is the remaining step for images to display on the deployed site.
+- Drive source-of-truth document is established at `docs/harness/DRIVE_GALLERY.md`.
+- 79-work collection contract is locked: `featured` (6), `event` (10), `logo` (13), `print` (9), `social` (20), `shirts` (21).
+- Main Drive folder (`1NP099TUQaYz7xs_wZ6QutJrZI5wl9kvi`) and 6 category folder IDs are locked in `DRIVE_GALLERY.md`.
+- Individual Drive file IDs are considered verified only when present in `lib/gallery/manifest.ts`; currently 0 verified / 79 unresolved.
+- `public/gallery/` is ignored in `.gitignore` and `.dockerignore`, and untracked from Git; must not be restored to Git as primary storage.
+- Next.js static export generates cleanly (`out/` is ~8.6 MB without local gallery).
 
 ## LAST CHANGES
 
-- `.gitignore`: Added `/public/gallery/`.
-- `.dockerignore`: Excluded `public/gallery/`, `docs/`, `*.md`, and `**/.git`.
-- `scripts/verify-static-output.mjs`: Made static output asset verification support builds both with and without local gallery files.
-- `docs/harness/CHANGELOG.md`: Appended untracking task entry.
-- `docs/harness/HANDOFF.md`: Updated to reflect untracked gallery state.
-- Git index: Untracked 79 gallery image files.
+- `docs/harness/DRIVE_GALLERY.md`: Created durable source-of-truth document with folder IDs, category mapping, and 79 display titles.
+- `AGENTS.md`: Added `DRIVE_GALLERY.md` discovery step and source-of-truth entry.
+- `docs/harness/AUDIT.md`: Added reference to `DRIVE_GALLERY.md` and updated file ownership table.
+- `docs/harness/CHANGELOG.md`: Appended task entry for persisting Google Drive gallery source of truth.
+- `docs/harness/HANDOFF.md`: Updated with Drive status, open issues, and next action.
 
 ## BLOCKERS / OPEN ISSUES
 
-- Individual Google Drive file IDs need to be added to `lib/gallery/manifest.ts` so remote images render in production.
+- Individual Google Drive file IDs are missing/unresolved in `lib/gallery/manifest.ts` (0 of 79 populated).
+- Open issue: service-worker image cache registration in dev logs requests `/sw.js` resulting in 404 (file currently absent).
 
 ## READ NEXT
 
-- `AGENTS.md`
-- `docs/harness/HANDOFF.md`
+- `docs/harness/DRIVE_GALLERY.md`
 - `lib/gallery/manifest.ts`
 - `lib/gallery/storage.ts`
+- `scripts/audit-gallery-sources.mjs`
 
 ## NEXT ACTION
 
-Redeploy and compare remote build-context size against the previous ~606.12 MB and verify container memory usage stays well below the 1536 MB ceiling.
+Verify and populate the individual Google Drive file IDs for all 79 gallery entries, then validate actual browser-loadable image URLs through the storage adapter.
 
 ## DO NOT REPEAT
 
-- Drive category discovery (already locked in `AUDIT.md`).
+- Drive main/category folder discovery (locked in `DRIVE_GALLERY.md`).
+- 79-work collection counting and category counting.
 - Local-vs-remote gallery migration investigation.
-- Static export compatibility investigation.
-- Previous image decode memory audit (~2.35 GB RGBA benchmarked).
-- Re-measuring tracked gallery size (now 0 bytes).
+- Previous static-export investigation and Node-server requirement investigation.
+- Previous image decoded-memory audit (~2.35 GB RGBA benchmarked).
+- Previous grain/CSS performance audit.
 
 ## LAST VERIFICATION
 
@@ -66,3 +63,4 @@ Redeploy and compare remote build-context size against the previous ~606.12 MB a
 - `npm run verify` ✅ (TypeScript + ESLint pass)
 - `npm run build` ✅ (Turbopack static export pass)
 - `npm run verify:static` ✅ (routes and assets pass)
+- `npm run gallery:audit` ✅ (79 entries and category counts pass)

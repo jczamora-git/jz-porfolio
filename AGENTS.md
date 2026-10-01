@@ -22,6 +22,7 @@ Allowed discovery order:
 
 `AGENTS.md`
 → `docs/harness/HANDOFF.md`
+→ (for gallery/Drive/storage tasks: `docs/harness/DRIVE_GALLERY.md`)
 → `npm run harness:status`
 → exact files in `HANDOFF.md > READ NEXT`
 → exact symbol search only if required
@@ -71,6 +72,9 @@ Append-only engineering journal. Add one compact entry per completed task.
 
 `docs/harness/HANDOFF.md`
 The latest working state. Replace/update at the end of every coding task. This is the primary resume file for the next agent.
+
+`docs/harness/DRIVE_GALLERY.md`
+Durable source of truth for Google Drive folder IDs, category mapping, and the 79-work collection contract. Read before any gallery/storage task.
 
 If these disagree with code, code wins; update the harness before ending the task.
 

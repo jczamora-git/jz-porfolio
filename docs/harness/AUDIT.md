@@ -1,7 +1,7 @@
 # Project Audit
 
 STATUS: VERIFIED
-AUDITED_COMMIT: 6b9c8cd
+AUDITED_COMMIT: 2e1ae03
 AUDITED_AT: 2026-10-01
 
 This file is the durable architecture map and verified project facts for Jeizi Portfolio.
@@ -100,18 +100,13 @@ The gallery collection must remain exactly 79 works unless explicitly modified:
 
 ## Google Drive storage map
 
-Locked folder IDs for future remote migration:
+Durable Drive gallery source of truth: `docs/harness/DRIVE_GALLERY.md`
 
-- **Main Drive folder**: `1NP099TUQaYz7xs_wZ6QutJrZI5wl9kvi`
-  - URL: `https://drive.google.com/drive/folders/1NP099TUQaYz7xs_wZ6QutJrZI5wl9kvi?usp=drive_link`
-- **Social Media (20 works)**: `1mkO97F5i1JNoTQcLD5R4UFIEN-a-pZPm`
-- **Print & Collateral (9 works)**: `1yr7jqSf7MvoN2of8QwFngwdAkwySBVzW`
-- **T-Shirt & Apparel (21 works)**: `1iPkgip2CDJkiq6tfp0D_iTu3GptvBg1r`
-- **Logo Design (13 works)**: `1pICY8qRqJvIY1MrSVpQLmSBGwEoJstkc`
-- **Featured (6 works)**: `1VjkTQ1zrOngNlHngLaTpkVXBWR7ooj7n`
-- **Event & Competition (10 works)**: `1RDSIMmbxpi_EbJV6kH9GDPHWtMdBFT-5`
-
-*Status*: Folder IDs are verified and locked. Individual Drive file IDs for the 79 works are UNRESOLVED (not yet uploaded/mapped). Do not invent Drive file IDs.
+- **Collection contract**: Exactly 79 works across 6 category folders.
+- **Remote storage provider target**: Google Drive (public view URLs via adapter `lib/gallery/storage.ts`).
+- **Category folder IDs**: Locked in `DRIVE_GALLERY.md`.
+- **Individual per-file Drive IDs**: UNRESOLVED (pending population into `lib/gallery/manifest.ts`).
+- Detailed folder IDs, category mapping, and full title inventory live in `docs/harness/DRIVE_GALLERY.md`.
 
 ## Critical invariants
 
@@ -140,7 +135,8 @@ Locked folder IDs for future remote migration:
 | Hero/home visual change | `components/Hero.tsx`, `app/page.tsx` | Gallery files, scripts |
 | Navbar/scroll behavior | `components/Navbar.tsx` | Data manifests |
 | Gallery UI | `components/gallery/GalleryGrid.tsx` | Home components |
-| Gallery data/source | `lib/gallery/manifest.ts`, `lib/gallery/storage.ts` | UI layout code |
+| Gallery data / source | `lib/gallery/manifest.ts`, `lib/gallery/storage.ts` | UI layout code |
+| Gallery storage / Drive mapping | `docs/harness/DRIVE_GALLERY.md`, `lib/gallery/manifest.ts`, `lib/gallery/storage.ts`, `scripts/audit-gallery-sources.mjs` | `Hero`, `Navbar`, `app/globals.css`, homepage components |
 | Deployment failure | `next.config.ts`, `.dockerignore`, `scripts/deploy-audit.mjs` | Component code |
 | Asset performance | `app/globals.css`, `lib/gallery.ts` | Next config |
 | Harness maintenance | `AGENTS.md`, `docs/harness/*`, `scripts/harness-status.mjs` | App routes |
