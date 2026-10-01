@@ -7,8 +7,18 @@ import type { GalleryItem } from "@/lib/gallery";
 export default function GalleryGrid({ items }: { items: GalleryItem[] }) {
   const [active, setActive] = useState<string>("all");
   const [index, setIndex] = useState<number | null>(null);
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
   const dialogRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
+
+  // Register image cache service worker in client browser
+  useEffect(() => {
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js").catch(() => {
+        // Silently continue if service worker registration fails
+      });
+    }
+  }, []);
 
   const categories = useMemo(() => {
     const seen = new Map<string, string>();
@@ -123,13 +133,39 @@ export default function GalleryGrid({ items }: { items: GalleryItem[] }) {
               className="relative w-full overflow-hidden border border-bone/10 bg-coal transition-colors duration-500 group-hover:border-blood/60"
               style={{ aspectRatio: `${item.w} / ${item.h}` }}
             >
-              <Image
-                src={item.src}
-                alt={item.alt || item.title}
-                fill
-                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-              />
+              {failedImages.has(item.id) ? (
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                  <span className="font-mono text-xs text-ash">Image unavailable</span>
+                  <span
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setFailedImages((prev) => {
+                        const next = new Set(prev);
+                        next.delete(item.id);
+                        return next;
+                      });
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    className="mt-2 inline-block border border-bone/20 px-2 py-1 font-mono text-[9px] uppercase tracking-wider text-bone hover:border-blood hover:text-blood"
+                  >
+                    Retry
+                  </span>
+                </div>
+              ) : (
+                <Image
+                  src={item.src}
+                  alt={item.alt || item.title}
+                  fill
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  onError={() => {
+                    setFailedImages((prev) => new Set(prev).add(item.id));
+                  }}
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <div className="absolute inset-x-0 bottom-0 translate-y-3 p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                 <p className="font-display text-sm font-bold uppercase tracking-wide text-bone">
@@ -158,6 +194,13 @@ export default function GalleryGrid({ items }: { items: GalleryItem[] }) {
           aria-label={`${current.title} — image ${index! + 1} of ${filtered.length}`}
           onClick={close}
         >
+          {/* Prefetch adjacent images for smooth navigation */}
+          {filtered.length > 1 && (
+            <>
+              <link rel="prefetch" href={filtered[(index! + 1) % filtered.length].src} as="image" />
+              <link rel="prefetch" href={filtered[(index! - 1 + filtered.length) % filtered.length].src} as="image" />
+            </>
+          )}
           <div
             className="relative flex h-[85vh] w-full items-center justify-center"
             onClick={(e) => e.stopPropagation()}

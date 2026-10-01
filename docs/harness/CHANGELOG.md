@@ -3,6 +3,20 @@
 Append one compact entry per completed coding task. Newest entry first.
 Do not copy raw logs.
 
+## 2026-10-01 — Migrate 79 Gallery Works to Remote Google Drive Storage
+
+**Goal:** Resolve production 404s for local gallery images by mapping all 79 works to verified individual Google Drive file IDs and adding persistent client caching.
+
+**Changed:** `lib/gallery/manifest.ts`, `lib/gallery/storage.ts`, `next.config.ts`, `components/gallery/GalleryGrid.tsx`, `public/sw.js`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:** All 79 individual Google Drive file IDs were extracted and mapped to canonical manifest records. Storage adapter resolves works to `https://lh3.googleusercontent.com/d/${fileId}` (HTTP 200). Implemented `public/sw.js` CacheFirst image caching, lazy-loading, adjacent prefetch in lightbox, and fallback retry. Generated static export `out/gallery/index.html` has 0 local `/gallery/*.png` references.
+
+**Verified:** `npm run verify` ✅; `npm run build` ✅; `npm run verify:static` ✅; `npm run gallery:audit` ✅ (79 Drive mapped, 0 local, 0 unresolved).
+
+**Architecture impact:** Pure remote asset delivery for portfolio gallery works. Preserves static export without local image assets.
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
 ## 2026-10-01 — Persist Google Drive Gallery Source of Truth
 
 **Goal:** Prevent future agents from rediscovering Drive/category/gallery metadata.

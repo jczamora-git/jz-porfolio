@@ -83,8 +83,8 @@ export type GalleryItem = GalleryAsset;
  */
 export function resolveGoogleDriveUrl(fileId: string, directUrl?: string): string {
   if (directUrl) return directUrl;
-  // Standard public Drive direct view URL format
-  return `https://drive.google.com/uc?export=view&id=${encodeURIComponent(fileId)}`;
+  // Direct Google CDN endpoint for public Drive image files
+  return `https://lh3.googleusercontent.com/d/${encodeURIComponent(fileId)}`;
 }
 
 /**

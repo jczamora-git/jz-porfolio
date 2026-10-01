@@ -2,56 +2,61 @@
 
 HANDOFF_VERSION: 1
 UPDATED_AT: 2026-10-01
-AUDITED_COMMIT: 2e1ae03
-CURRENT_HEAD: 2e1ae03
+AUDITED_COMMIT: 0b40c66
+CURRENT_HEAD: 0b40c66
 STATE: READY
 
 ## CURRENT STATUS
 
-Harness v2 is augmented with `docs/harness/DRIVE_GALLERY.md` as the durable source of truth. Production static export on Wasmer works cleanly, but deployed gallery images show broken alt text placeholders because individual Google Drive file IDs have not yet been mapped into `lib/gallery/manifest.ts`. `public/gallery/` is completely untracked and ignored in Git.
+All 79 gallery works have been successfully migrated to individual Google Drive file IDs in `lib/gallery/manifest.ts`. The storage adapter in `lib/gallery/storage.ts` resolves all works directly to `https://lh3.googleusercontent.com/d/${fileId}`. Zero local gallery paths remain in the manifest or generated static export (`out/gallery/index.html`). A client-side CacheFirst service worker (`public/sw.js`) and prefetching were added to cache remote images persistently.
 
 ## CURRENT GOAL
 
-Verify and populate the individual Google Drive file IDs for all 79 gallery entries in `lib/gallery/manifest.ts` to restore image delivery in production.
+Deploy and verify remote Google Drive image delivery on the live Wasmer production deployment.
 
 ## VERIFIED FACTS
 
-- Drive source-of-truth document is established at `docs/harness/DRIVE_GALLERY.md`.
-- 79-work collection contract is locked: `featured` (6), `event` (10), `logo` (13), `print` (9), `social` (20), `shirts` (21).
-- Main Drive folder (`1NP099TUQaYz7xs_wZ6QutJrZI5wl9kvi`) and 6 category folder IDs are locked in `DRIVE_GALLERY.md`.
-- Individual Drive file IDs are considered verified only when present in `lib/gallery/manifest.ts`; currently 0 verified / 79 unresolved.
-- `public/gallery/` is ignored in `.gitignore` and `.dockerignore`, and untracked from Git; must not be restored to Git as primary storage.
-- Next.js static export generates cleanly (`out/` is ~8.6 MB without local gallery).
+- Authoritative source of gallery data: `lib/gallery/manifest.ts` (handwritten/authoritative, NOT generated from `public/gallery`).
+- Storage adapter: `lib/gallery/storage.ts` via `resolveGallerySrc` -> `resolveGoogleDriveUrl`.
+- Direct Google CDN endpoint: `https://lh3.googleusercontent.com/d/${fileId}` returns direct HTTP 200 `image/png` without cookie redirects.
+- Gallery mapping counts: 79 Drive-mapped / 0 local / 0 unresolved (Total: 79).
+- Category contract locked and verified: featured (6), event (10), logo (13), print (9), social (20), shirts (21).
+- Proof-of-path Diagnostic (`Certificate Lnk`): File ID `1buAw7xNzxWsEY4yummr5YP_x4i4UQvDK` resolves to `https://lh3.googleusercontent.com/d/1buAw7xNzxWsEY4yummr5YP_x4i4UQvDK` (HTTP 200).
+- Static output check: `out/gallery/index.html` contains 0 references to `/gallery/*.png` local assets.
+- Remote image domain configured in `next.config.ts`: `drive.usercontent.google.com` and `lh3.googleusercontent.com`.
+- Persistent client cache: `public/sw.js` registered in `GalleryGrid.tsx` (`jeizi-gallery-v1` CacheFirst strategy).
+- Local gallery asset directory `public/gallery/` remains untracked and gitignored.
 
 ## LAST CHANGES
 
-- `docs/harness/DRIVE_GALLERY.md`: Created durable source-of-truth document with folder IDs, category mapping, and 79 display titles.
-- `AGENTS.md`: Added `DRIVE_GALLERY.md` discovery step and source-of-truth entry.
-- `docs/harness/AUDIT.md`: Added reference to `DRIVE_GALLERY.md` and updated file ownership table.
-- `docs/harness/CHANGELOG.md`: Appended task entry for persisting Google Drive gallery source of truth.
-- `docs/harness/HANDOFF.md`: Updated with Drive status, open issues, and next action.
+- `lib/gallery/manifest.ts`: Populated verified `google-drive` file IDs for all 79 works.
+- `lib/gallery/storage.ts`: Configured `resolveGoogleDriveUrl` to direct CDN URL (`https://lh3.googleusercontent.com/d/${fileId}`).
+- `next.config.ts`: Added `drive.usercontent.google.com` to `remotePatterns`.
+- `public/sw.js`: Created Service Worker for persistent client-side caching of Google CDN gallery images.
+- `components/gallery/GalleryGrid.tsx`: Added service worker registration, lazy-loading, adjacent prefetch, and graceful retry state.
+- `docs/harness/HANDOFF.md` & `docs/harness/CHANGELOG.md`: Updated with Drive migration details.
 
 ## BLOCKERS / OPEN ISSUES
 
-- Individual Google Drive file IDs are missing/unresolved in `lib/gallery/manifest.ts` (0 of 79 populated).
-- Open issue: service-worker image cache registration in dev logs requests `/sw.js` resulting in 404 (file currently absent).
+- None. All 79 individual Google Drive file IDs are populated and verified.
 
 ## READ NEXT
 
-- `docs/harness/DRIVE_GALLERY.md`
 - `lib/gallery/manifest.ts`
 - `lib/gallery/storage.ts`
-- `scripts/audit-gallery-sources.mjs`
+- `components/gallery/GalleryGrid.tsx`
+- `public/sw.js`
 
 ## NEXT ACTION
 
-Verify and populate the individual Google Drive file IDs for all 79 gallery entries, then validate actual browser-loadable image URLs through the storage adapter.
+Push changes to Git and trigger Wasmer deployment to verify remote image delivery in production.
 
 ## DO NOT REPEAT
 
-- Drive main/category folder discovery (locked in `DRIVE_GALLERY.md`).
+- Tracing local gallery path generation (it came from `provider: "local"` in `manifest.ts`).
+- Drive folder-vs-file ID distinction (folder IDs in `DRIVE_GALLERY.md`, file IDs in `manifest.ts`).
+- Drive category-to-file extraction (all 79 individual file IDs extracted and verified).
 - 79-work collection counting and category counting.
-- Local-vs-remote gallery migration investigation.
 - Previous static-export investigation and Node-server requirement investigation.
 - Previous image decoded-memory audit (~2.35 GB RGBA benchmarked).
 - Previous grain/CSS performance audit.
@@ -62,5 +67,6 @@ Verify and populate the individual Google Drive file IDs for all 79 gallery entr
 - `npm run deploy:audit` ✅ (export & context pass)
 - `npm run verify` ✅ (TypeScript + ESLint pass)
 - `npm run build` ✅ (Turbopack static export pass)
-- `npm run verify:static` ✅ (routes and assets pass)
-- `npm run gallery:audit` ✅ (79 entries and category counts pass)
+- `npm run verify:static` ✅ (routes and remote assets pass)
+- `npm run gallery:audit` ✅ (79 Drive mapped, 0 local, 0 unresolved, category checks pass)
+
