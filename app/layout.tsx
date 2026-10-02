@@ -41,6 +41,7 @@ export const metadata: Metadata = {
         url: "/og-jeizi.png",
         width: 1200,
         height: 630,
+        type: "image/png",
         alt: "John Christopher King Zamora — Jeizi Productions",
       },
     ],
