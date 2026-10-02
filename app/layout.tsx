@@ -21,7 +21,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://jeiziproductions.com"),
+  metadataBase: new URL("https://www.jeiziproductions.com"),
   title: "John Christopher King Zamora — Full-Stack Developer & Graphic Designer",
   description:
     "Official portfolio of John Christopher King Zamora (Jeizi), creator of Jeizi Productions. Full-stack developer and graphic designer building production-ready web, mobile, desktop, and visual systems.",
@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     title: "John Christopher King Zamora — Full-Stack Developer & Graphic Designer",
     description:
       "Official portfolio of John Christopher King Zamora (Jeizi), creator of Jeizi Productions. Full-stack developer and graphic designer building production-ready web, mobile, desktop, and visual systems.",
-    url: "https://jeiziproductions.com/",
+    url: "https://www.jeiziproductions.com/",
     siteName: "Jeizi Productions",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "/og-jeizi.png",
+        url: "/og-jeizi.png?v=20261003",
         width: 1200,
         height: 630,
         type: "image/png",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: "John Christopher King Zamora — Full-Stack Developer & Graphic Designer",
     description:
       "Official portfolio of John Christopher King Zamora (Jeizi), creator of Jeizi Productions. Full-stack developer and graphic designer building production-ready web, mobile, desktop, and visual systems.",
-    images: ["/og-jeizi.png"],
+    images: ["/og-jeizi.png?v=20261003"],
   },
   icons: {
     icon: "/jeizi-logo.png",
