@@ -3,6 +3,20 @@
 Append one compact entry per completed coding task. Newest entry first.
 Do not copy raw logs.
 
+## 2026-10-03 — Hero Outlined Typewriter Bottom-0 Edge Anchoring
+
+**Goal:** Anchor the large outlined "JEIZI PRODUCTIONS" decorative typewriter flush to the very bottom boundary of the Hero (`bottom: 0`) to eliminate unwanted empty vertical space below it.
+
+**Changed:** `components/HeroOutlineTypewriter.tsx`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:**
+- Updated `HeroOutlineTypewriter.tsx` container class to `pointer-events-none absolute bottom-0 left-6 z-0 max-w-[95vw] overflow-hidden select-none md:left-10`.
+- Preserved all typography scale (`text-[clamp(2.5rem,9.5vw,10.5rem)]`), thin outline styling (`text-outline`), and looping typewriter sequence without horizontal page overflow.
+
+**Verified:** `npm run harness:status` ✅; `npm run verify` ✅ (0 errors, 0 warnings); `npm run build` ✅ (12 static pages generated); `npm run verify:static` ✅ (all 12 routes verified).
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
 ## 2026-10-03 — Section Navigation Viewport Centering & Open Graph Social Preview
 
 **Goal:** Fix homepage section navigation so clicking `#about`, `#contact`, `#services`, `#work` frames target content intentionally around the viewport center (eliminating huge empty top gaps), and configure `public/og-jeizi.png` as the production Open Graph and Twitter sharing image for `https://jeiziproductions.com`.

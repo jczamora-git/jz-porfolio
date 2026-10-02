@@ -62,7 +62,7 @@ export default function HeroOutlineTypewriter() {
 
   return (
     <div
-      className="pointer-events-none absolute bottom-4 left-6 z-0 max-w-[92vw] overflow-hidden select-none sm:bottom-6 sm:left-8 md:bottom-8 md:left-10 lg:bottom-10 lg:left-10"
+      className="pointer-events-none absolute bottom-0 left-6 z-0 max-w-[95vw] overflow-hidden select-none md:left-10"
       aria-hidden="true"
     >
       <span className="text-outline font-display text-[clamp(2.5rem,9.5vw,10.5rem)] font-bold uppercase leading-none tracking-tight whitespace-pre">
