@@ -3,6 +3,21 @@
 Append one compact entry per completed coding task. Newest entry first.
 Do not copy raw logs.
 
+## 2026-10-03 — Open Graph Meta Type & Robots.txt Crawler Polish
+
+**Goal:** Add `type: "image/png"` to Open Graph image metadata and generate `public/robots.txt` for clean crawler indexing and social sharing compatibility.
+
+**Changed:** `app/layout.tsx`, `public/robots.txt`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:**
+- Added standard `public/robots.txt` allowing indexing and linking to sitemap.
+- Explicitly specified `type: "image/png"` in Open Graph images metadata array.
+- Pushed clean commit to `origin main`.
+
+**Verified:** `npm run verify` ✅; `npm run build` ✅; `npm run verify:static` ✅; `npm run harness:status` ✅.
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
 ## 2026-10-03 — Hero Outlined Typewriter Bottom-0 Edge Anchoring
 
 **Goal:** Anchor the large outlined "JEIZI PRODUCTIONS" decorative typewriter flush to the very bottom boundary of the Hero (`bottom: 0`) to eliminate unwanted empty vertical space below it.
