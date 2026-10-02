@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 const links = [
   { label: "WORK", href: "/#work" },
   { label: "GALLERY", href: "/gallery/" },
+  { label: "DEVELOPMENT", href: "/development/" },
   { label: "ABOUT", href: "/#about" },
   { label: "SERVICES", href: "/#services" },
   { label: "CONTACT", href: "/#contact" },
@@ -65,16 +66,21 @@ export default function Navbar() {
           />
         </Link>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-7 lg:gap-8 md:flex">
           {links.map((l) => {
             const isGallery = l.href.startsWith("/gallery");
-            const isActive = isGallery ? pathname?.startsWith("/gallery") : false;
+            const isDev = l.href.startsWith("/development");
+            const isActive = isGallery
+              ? pathname?.startsWith("/gallery")
+              : isDev
+              ? pathname?.startsWith("/development")
+              : false;
 
             return (
               <li key={l.label}>
                 <a
                   href={l.href}
-                  className={`link-underline font-mono text-[11px] tracking-[0.25em] transition-colors ${
+                  className={`link-underline font-mono text-[11px] tracking-[0.2em] lg:tracking-[0.25em] transition-colors ${
                     isActive ? "is-active text-bone" : "text-ash hover:text-bone"
                   }`}
                 >

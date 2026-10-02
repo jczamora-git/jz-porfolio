@@ -1,0 +1,84 @@
+Mas bagay sa **portfolio showcase** na hindi na tayo magkaroon ng mahabang “My Contribution” section na parang dine-defend mo pa kung ano ang ginawa mo. Mas natural na ipakita na **ikaw ang primary developer at nagpasimula ng system**, then hayaan na yung features, architecture, at screenshots ang magpakita ng scope ng work.
+
+Palitan natin yung project metadata sa taas ng ganito:
+
+```markdown
+| Project Information | Details |
+| --- | --- |
+| Project Type | School Management / Learning Resource Management System |
+| Platform | Web Application |
+| Architecture | Django server-rendered web application |
+| Role | Primary Developer / Project Lead |
+| Contribution | Project initiation, system architecture, backend, database design, frontend, UI/UX, and feature development |
+| Development Share | Approximately 80% of the system |
+| Status | Active Development |
+```
+
+Then puwedeng idagdag lang itong maikling intro after ng Project Overview:
+
+```markdown
+## Development Role
+
+I initiated the LRMS project and served as its primary developer, handling approximately 80% of the system's development across architecture, backend functionality, database relationships, frontend implementation, UI/UX design, testing, and feature integration.
+```
+
+Tapos **tanggalin na natin entirely** yung mahaba kong dating section na:
+
+```markdown
+# My Contribution
+```
+
+Hindi na kailangan yung paragraphs na:
+
+> I worked on the design and development...
+>
+> A significant part of the project involved...
+
+Kasi nagmumukhang project report kaysa portfolio.
+
+Mas magandang structure ngayon:
+
+```text
+LRMS
+├── Project Overview
+├── Development Role
+├── Technology Stack
+├── System Modules
+├── User & Workforce Management
+├── Enrollment Management
+├── Teaching Assignments
+├── Academic Structure
+├── Curriculum Management
+├── Learning Resource Management
+├── Resource Approval Workflow
+├── School-Based Management
+├── Role-Based Access Control
+├── UI / UX Design System
+├── Data Integrity
+├── Engineering Challenges
+├── Testing & Quality Assurance
+├── AI-Assisted Development Harness
+├── Example Workflows
+├── Screenshots
+├── Development Status
+└── Future Improvements
+```
+
+Actually, pwede pa nating gawing mas portfolio-like yung title area:
+
+```markdown
+# Learning Resource Management System
+### Adriatico Memorial School
+
+**Full-Stack Django Web Application**
+
+`Python` `Django` `JavaScript` `HTML` `CSS` `Django ORM`
+
+**Role:** Primary Developer / Project Lead  
+**Development Contribution:** ~80%  
+**Status:** Active Development
+
+> A centralized school management and learning-resource platform for managing academic structures, curriculum, enrollment, teaching assignments, digital learning resources, and School-Based Management evidence.
+```
+
+Ito mas malakas tingnan sa GitHub/portfolio dahil within the first few lines pa lang, obvious na **hindi ka lang contributor sa project — ikaw yung nagpasimula at primary developer ng system**.

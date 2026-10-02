@@ -48,7 +48,7 @@ export default function ContactForm() {
             required
             value={data.name}
             onChange={handleChange}
-            placeholder="Ada Lovelace"
+            placeholder="Your name"
             className={inputClass}
           />
         </label>
@@ -62,7 +62,7 @@ export default function ContactForm() {
             required
             value={data.email}
             onChange={handleChange}
-            placeholder="ada@studio.com"
+            placeholder="you@email.com"
             className={inputClass}
           />
         </label>
@@ -78,7 +78,7 @@ export default function ContactForm() {
           rows={4}
           value={data.message}
           onChange={handleChange}
-          placeholder="Tell me about the brief, timeline, and budget…"
+          placeholder="Tell me what you're building, your timeline, and what you need help with…"
           className={`${inputClass} resize-none`}
         />
       </label>

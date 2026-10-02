@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
+import HeroRotatingHeadline from "./HeroRotatingHeadline";
+import HeroOutlineTypewriter from "./HeroOutlineTypewriter";
 
 export default function Hero() {
   return (
@@ -8,34 +10,29 @@ export default function Hero() {
       <div className="pointer-events-none absolute -right-40 -top-40 h-[34rem] w-[34rem] rounded-full bg-blood/20 blur-[160px] transform-gpu will-change-transform" />
       <div className="pointer-events-none absolute bottom-0 left-1/2 h-40 w-[60rem] -translate-x-1/2 bg-blood/10 blur-[120px] transform-gpu will-change-transform" />
 
-      {/* giant watermark */}
-      <span className="text-outline pointer-events-none absolute -bottom-20 -left-10 select-none font-display text-[24rem] font-bold leading-none md:text-[30rem]">
-        J
-      </span>
+      {/* giant outlined brand typewriter animation */}
+      <HeroOutlineTypewriter />
 
       <div className="relative mx-auto w-full max-w-7xl">
         <Reveal>
           <div className="mb-8 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.35em] text-ash">
             <span className="h-2 w-2 animate-pulse-dot bg-blood" />
-            Portfolio © 2026 — Graphic Designer &amp; Art Director
+            Portfolio © 2026 — Full-Stack Developer &amp; Graphic Designer
           </div>
         </Reveal>
 
         <Reveal delay={100}>
-          <h1 className="font-display text-[clamp(3.2rem,10.5vw,10.5rem)] font-bold uppercase leading-[0.86] tracking-tight">
-            Bold ideas,
-            <br />
-            <span className="italic text-blood">sharp</span> design.
-          </h1>
+          <HeroRotatingHeadline />
         </Reveal>
 
         <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
-          <Reveal delay={200} className="max-w-md">
+          <Reveal delay={200} className="max-w-xl">
             <p className="text-base leading-relaxed text-ash md:text-lg">
-              I&apos;m <span className="text-bone">Jeizi</span> — the designer
-              behind Jeizi Productions, crafting identities, campaigns, and
-              visuals that refuse to be ignored. Based in the Philippines,
-              working worldwide.
+              I&apos;m <span className="text-bone">John Christopher King Zamora</span> — known as <span className="text-bone">Jeizi</span>, a full-stack
+              developer and graphic designer behind Jeizi Productions. I build
+              production-ready web, mobile, and desktop systems with the same
+              attention to structure, usability, and visual identity from
+              interface to deployment. Based in the Philippines, working worldwide.
             </p>
           </Reveal>
 
@@ -51,10 +48,10 @@ export default function Hero() {
                 </span>
               </Link>
               <Link
-                href="/#contact"
+                href="/development"
                 className="inline-flex items-center justify-center gap-3 border border-bone/25 px-8 py-4 font-mono text-xs tracking-[0.25em] text-bone transition-colors hover:border-blood hover:text-blood"
               >
-                GET IN TOUCH
+                DEVELOPMENT ↗
               </Link>
             </div>
           </Reveal>
@@ -68,10 +65,10 @@ export default function Hero() {
             Scroll
           </span>
           <a
-            href="mailto:hello@jeiziproductions.com"
+            href="mailto:johnchristopherkingzamora@gmail.com"
             className="transition-colors hover:text-blood"
           >
-            hello@jeiziproductions.com
+            johnchristopherkingzamora@gmail.com
           </a>
         </div>
       </div>

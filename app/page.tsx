@@ -2,9 +2,9 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import Works from "@/components/Works";
+import DevelopmentSection from "@/components/DevelopmentSection";
 import About from "@/components/About";
 import Services from "@/components/Services";
-import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -16,9 +16,9 @@ export default function Home() {
         <Hero />
         <Marquee />
         <Works />
+        <DevelopmentSection />
         <About />
         <Services />
-        <Testimonials />
         <Contact />
       </main>
       <Footer />

@@ -21,9 +21,9 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "JEIZI PRODUCTIONS — Graphic Designer & Art Director",
+  title: "John Christopher King Zamora — Full-Stack Developer & Graphic Designer",
   description:
-    "Portfolio of Jeizi — graphic designer and founder of Jeizi Productions, crafting bold identities, campaigns, and visuals that refuse to be ignored.",
+    "Official portfolio of John Christopher King Zamora (Jeizi), creator of Jeizi Productions. Full-stack developer and graphic designer building production-ready web, mobile, desktop, and visual systems.",
   icons: {
     icon: "/jeizi-logo.png",
     shortcut: "/jeizi-logo.png",

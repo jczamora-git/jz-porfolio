@@ -24,9 +24,9 @@ export default function Contact() {
 
         <Reveal delay={100}>
           <h2 className="font-display text-[clamp(3rem,9vw,9rem)] font-bold uppercase leading-[0.9] tracking-tight">
-            Let&apos;s make
+            Let&apos;s build
             <br />
-            something <span className="italic text-blood">loud.</span>
+            something <span className="italic text-blood">bold.</span>
           </h2>
         </Reveal>
 
@@ -34,16 +34,17 @@ export default function Contact() {
           <Reveal delay={200}>
             <div>
               <p className="max-w-md text-lg leading-relaxed text-ash">
-                Have a project that needs a sharp eye and a louder idea? Tell me
-                about it. I&apos;m currently booking for{" "}
-                <span className="text-bone">Q3 2026</span>.
+                Need a full-stack product, a stronger digital experience, a brand
+                identity — or all three? Tell me what you&apos;re building. I work
+                with clients who value both solid engineering and sharp visual
+                execution.
               </p>
 
               <a
-                href="mailto:hello@jeiziproductions.com"
+                href="mailto:johnchristopherkingzamora@gmail.com"
                 className="link-underline mt-8 inline-block font-display text-2xl font-bold tracking-tight md:text-3xl"
               >
-                hello@jeiziproductions.com
+                johnchristopherkingzamora@gmail.com
               </a>
 
               <div className="mt-10 flex flex-wrap gap-3">
@@ -62,7 +63,7 @@ export default function Contact() {
 
               <div className="mt-10 flex items-center gap-3 border border-blood/40 bg-blood/5 p-4 font-mono text-[11px] uppercase tracking-[0.2em] text-bone">
                 <span className="h-2 w-2 animate-pulse-dot bg-blood" />
-                Available for freelance — 2 slots left this quarter
+                AVAILABLE FOR SELECTED PROJECTS
               </div>
             </div>
           </Reveal>

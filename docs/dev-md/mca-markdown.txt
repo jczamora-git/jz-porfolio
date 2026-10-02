@@ -1,0 +1,105 @@
+# LearnMCA — AI-Enhanced School Management System
+
+LearnMCA is a full-stack school management platform developed for **Maranatha Christian Academy Foundation**. It centralizes online enrollment, student and personnel records, academic management, teacher assignments, spreadsheet-style grading, tuition payments, RFID gate attendance, school services, learning resources, multi-channel communication, and AI-assisted analytics into a single unified institutional platform.
+
+The system connects day-to-day administrative operations, classroom instruction, and financial workflows with an integrated **Learning Management System (LMS)** featuring interactive activities and quizzes, offline-resilient grade entry, automated email/SMS attendance alerts, and an intelligent analytics layer encompassing an **AI Chatbot**, **Model-Driven Predictive Analytics**, and **Semantic & Sentiment Analysis**.
+
+---
+
+## Major Functional Subsystems
+
+### 01. School Operations & Administration
+- **Online & Manual Enrollment:** Streamlined application workflows, status tracking, grade-level placements, and transferee classifications.
+- **Student & Personnel Records:** Comprehensive directories for students, teachers, administrators, and non-teaching personnel.
+- **Academic Structure:** Dynamic configuration of academic years, quarterly grading periods, grade levels, sections, and curricula.
+- **Teacher & Advisory Management:** Mapping subject curricula, section assignments, and advisory classes per faculty member.
+- **Institutional Reporting:** Administrative summaries for enrollment metrics, grade distributions, attendance compliance, and financials.
+
+### 02. Academics & Grading
+- **Spreadsheet-Style Grade Entry:** High-efficiency, grid-based teacher grading interface designed for rapid class-level encoding.
+- **Manual Grading Workflows:** Direct recording and calculation of quarterly subject marks.
+- **LMS Grade Synchronization:** Bidirectional linking allowing scores from interactive online activities and quizzes to automatically sync into official academic grade sheets.
+- **Offline Grade-Entry Resilience:** Teachers can continue encoding grades during network drops; changes are cached locally and synchronized once connectivity is restored.
+- **Academic Records & Verifications:** Centralized grade storage, report card generation, and administrative verification workflows.
+
+### 03. Integrated Learning Management System (LMS)
+- **LMS Modules & Courseware:** Structured curriculum modules organized by quarter and subject.
+- **Teacher Learning Resource Uploads:** Digital distribution of handouts, slide decks, readings, and multimedia assets.
+- **Interactive Quizzes & Activities:** Engaging, interactive quiz formats and learning exercises with automated grading.
+- **Student Resource Access:** Centralized learning portal for accessing class materials and reviewing past submissions.
+- **Activity Score Integration:** Direct integration of quiz and activity results with academic grade books.
+
+### 04. Financial Management & School Services
+- **Tuition & Fee Ledgering:** Student tuition accounts, customizable installment schedules, and balance tracking.
+- **Payment Histories & Receipts:** Transaction logs, official receipt tracking, and revenue reporting.
+- **School Services & Uniform Orders:** Integrated ordering for institutional uniforms and specialized service requests linked to student accounts.
+
+### 05. Hardware RFID Attendance & Automated Alerts
+- **Hardware RFID Scanner Integration:** Student ID badge tap-in and tap-out logging at school gates.
+- **Session Matching & Presence Tracking:** Automated morning/afternoon session detection and tardiness/absence logging.
+- **Automated Multi-Channel Notifications:** Instant parent notifications dispatched via **Email** and **SMS** upon entry and exit.
+- **Administrative Attendance Monitoring:** Real-time gate monitoring and historical attendance audit trails.
+
+### 06. Institutional Communication & Support
+- **Targeted Announcements:** Broadcasts targeted by school level, grade, section, or specific user roles.
+- **Student Concern Ticketing:** Dedicated support workflow for submitting and tracking academic or administrative inquiries with full communication history.
+
+### 07. AI & Intelligent Analytics
+- **AI-Powered Academic Chatbot:** Conversational assistant helping students and personnel access school policies, schedules, and guidance.
+- **Model-Driven Predictive Analytics:** Forward-looking projections analyzing historical and live institutional data for enrollment forecasting and revenue planning.
+- **Semantic & Sentiment Analysis:** Qualitative evaluation of student inquiries, feedback, and concern tickets to surface institutional signals for timely administrative intervention.
+
+---
+
+## System Architecture
+
+```text
+01. React 18 / TypeScript Frontend (SPA / PWA)
+        ↓  REST API / JWT & Session Authentication
+02. PHP LavaLust MVC Backend (Domain Services)
+        ├── Enrollment & Student Records
+        ├── Academic Curriculum & Advisory
+        ├── Spreadsheet Grading & Offline Sync
+        ├── Integrated LMS Modules & Quizzes
+        ├── Tuition Ledgering & School Services
+        ├── RFID Attendance, Email & SMS Alerts
+        └── Announcement & Concern Ticketing
+        ↓  Normalized Queries / Indexed Models
+03. MySQL Institutional Database
+        ↓
+04. AI & Intelligent Analytics Layer
+        ├── AI Chatbot (Student Guidance)
+        ├── Predictive Analytics (Enrollment & Financial Forecasts)
+        └── Semantic & Sentiment Analysis (Feedback Insights)
+```
+
+---
+
+## Engineering Highlights
+
+1. **Unified School Operations:** Single relational data architecture linking enrollment, academics, grading, payments, hardware attendance, LMS courseware, and services.
+2. **LMS + Academic Grade Synchronization:** Unified workflow bridging digital quizzes/activities with official quarterly grade books.
+3. **Offline-First Grade Entry:** Resilient local caching mechanism enabling uninterrupted grading during connectivity loss with automatic synchronization.
+4. **Hardware RFID Attendance & Automated Dispatch:** Real-time gate badge scanning integrated with automated Email and SMS parent notification pipelines.
+5. **AI-Assisted School Intelligence:** Practical conversational and predictive capabilities built with strict PII data sanitization to protect student privacy.
+
+---
+
+## Tech Stack
+
+- **Frontend & UI:** React 18, TypeScript, Vite, Tailwind CSS, Radix UI, TanStack Query, Zustand, Recharts, Workbox / PWA
+- **Backend & Core:** PHP, LavaLust 4.2.5 MVC, REST API, JWT & Session Auth, Custom Security Helpers, Offline Sync Engine
+- **Database:** MySQL Relational Database with normalized academic models
+- **Hardware & Alerts:** Hardware RFID integration, Email notification API, SMS dispatch API
+- **AI & Analytics:** AI Chatbot integration, Model-Driven Predictive Analytics, Semantic & Sentiment Analysis, Hugging Face model inference
+- **Infrastructure:** Hostinger Shared Hosting, Cloudflare Edge, Git / GitHub
+
+---
+
+## Project Status
+
+- **Project:** LearnMCA  
+- **Client / Institution:** Maranatha Christian Academy Foundation  
+- **Category:** Client System — School Management & AI  
+- **Role:** Lead Full-Stack Developer & System Architect  
+- **Status:** Active Development

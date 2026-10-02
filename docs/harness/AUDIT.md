@@ -16,15 +16,38 @@ This file is the durable architecture map and verified project facts for Jeizi P
 - Hosting/build provider: Anybuild Static Node.js provider (runs `next build` -> serves `out/`)
 - Important version constraints: Next.js 16 breaking changes; static export requires all routes to be static and images unoptimized or served remotely.
 
+## Portfolio disciplines
+
+- **Discipline 01: Graphic Design & Art Direction**: Brand identities, esports broadcasts, campaign visuals, editorial print, apparel, and 79-work gallery.
+- **Discipline 02: Full-Stack Software Engineering**: Web applications, API engineering, relational database design, cloud deployment, and system architectures.
+
+## Development project inventory (7 Projects)
+
+- **Authoritative source documents**: `docs/dev-md/` (source of truth; do not overwrite with guesses or re-research GitHub)
+- **Showcase media**: `public/dev/`
+- **Normalized render data**: `lib/development/projects.ts`
+- **Client Systems (3)**:
+  1. `sk-balite-plus` — **SK Balite Plus** (Next.js 15, Supabase, 18→1 RPC, Live Attendance)
+  2. `learnmca` — **LearnMCA** (React 18, PHP LavaLust MVC, MySQL, PHP Statistical Forecasting)
+  3. `lrms` — **LRMS** (Django, Python, Curriculum & SBM Resource Management, ~80% contribution)
+- **Personal Products (4)**:
+  4. `vaultify` — **Vaultify** (Ionic Vue 8, Capacitor, AES-GCM-256, PBKDF2, Local-First Password Manager)
+  5. `jeizi-ocr` — **Jeizi OCR Controller** (C# 12, .NET 8, Tesseract 5.2, OpenCV, Broadcast Telemetry)
+  6. `autosnap` — **AutoSnap** (C# 12, .NET 8, Whisper.net Offline AI, FFmpeg, WASAPI Audio Capture)
+  7. `retrv` — **Retrv** (Ionic Vue 9, Capacitor, Supabase Realtime, FCM Push, Lost & Found Community)
+
 ## Architecture map
 
 | Area | Responsibility | Primary files | Depends on |
 | --- | --- | --- | --- |
-| Home route | Landing page, hero, bio, preview works, contact | `app/page.tsx`, `components/Hero.tsx`, `components/Works.tsx`, `components/About.tsx`, `components/Contact.tsx` | `lib/projects.ts`, Tailwind CSS v4 |
-| Gallery route | Full portfolio masonry grid, category filter, modal lightbox | `app/gallery/page.tsx`, `components/gallery/GalleryGrid.tsx` | `lib/gallery.ts`, `lib/gallery/storage.ts` |
+| Home route | Dual-discipline landing page, hero, bio, preview works, development section, services, contact | `app/page.tsx`, `components/Hero.tsx`, `components/Works.tsx`, `components/DevelopmentSection.tsx`, `components/About.tsx`, `components/Services.tsx`, `components/Contact.tsx` | `lib/development/projects.ts`, Tailwind CSS v4 |
+| Gallery route | Full design portfolio masonry grid, category filter, modal lightbox | `app/gallery/page.tsx`, `components/gallery/GalleryGrid.tsx` | `lib/gallery.ts`, `lib/gallery/storage.ts` |
+| Development route | Dedicated software development portfolio, Client Systems, Personal Products, capability matrix | `app/development/page.tsx`, `components/development/DevelopmentProjectCard.tsx`, `components/development/DevelopmentCaseStudy.tsx` | `lib/development/projects.ts`, `lib/development/types.ts` |
+| Case study routes | 7 Static SSG case study pages for individual software systems | `app/development/[slug]/page.tsx`, `components/development/DevelopmentCaseStudy.tsx` | `lib/development/projects.ts` (`generateStaticParams`) |
+| Development data | Canonical software project data store & schema | `lib/development/types.ts`, `lib/development/projects.ts` | `docs/dev-md/` source documents |
 | Gallery data | Normalized manifest records and storage adapters | `lib/gallery.ts`, `lib/gallery/manifest.ts`, `lib/gallery/storage.ts` | Remote or local image sources |
 | Gallery UI/lightbox | Masonry grid with keyboard navigation, full view modal | `components/gallery/GalleryGrid.tsx` | React client state, `next/image` (unoptimized) |
-| Styling/performance | Theme variables, noise overlay, responsive typography, font tokens | `app/globals.css`, `app/layout.tsx` | Tailwind CSS v4, Google Fonts (Syne, Outfit, Space Mono) |
+| Styling/performance | Theme variables, noise overlay, responsive typography, font tokens | `app/globals.css`, `app/layout.tsx` | Tailwind CSS v4, Google Fonts (Inter, Space Grotesk, JetBrains Mono) |
 | Build/deploy | Static export configuration, Docker ignore context rules | `next.config.ts`, `.dockerignore`, `package.json` | Next.js CLI |
 | Harness | Agent routing, verification scripts, status and handoff protocol | `AGENTS.md`, `docs/harness/*`, `scripts/*` | Node.js built-ins |
 
@@ -34,15 +57,24 @@ This file is the durable architecture map and verified project facts for Jeizi P
 | --- | --- | --- | --- |
 | `/` | Static HTML | `app/page.tsx` | Client browser (interactive scrolling) |
 | `/gallery/` | Static HTML | `app/gallery/page.tsx` | Client browser (category filtering & lightbox) |
+| `/development/` | Static HTML | `app/development/page.tsx` | Client browser (project cards & capabilities) |
+| `/development/sk-balite-plus/` | Static HTML (SSG) | `app/development/[slug]/page.tsx` | Client browser |
+| `/development/learnmca/` | Static HTML (SSG) | `app/development/[slug]/page.tsx` | Client browser |
+| `/development/lrms/` | Static HTML (SSG) | `app/development/[slug]/page.tsx` | Client browser |
+| `/development/vaultify/` | Static HTML (SSG) | `app/development/[slug]/page.tsx` | Client browser |
+| `/development/jeizi-ocr/` | Static HTML (SSG) | `app/development/[slug]/page.tsx` | Client browser |
+| `/development/autosnap/` | Static HTML (SSG) | `app/development/[slug]/page.tsx` | Client browser |
+| `/development/retrv/` | Static HTML (SSG) | `app/development/[slug]/page.tsx` | Client browser |
 | `/_not-found` | Static HTML | `app/not-found.tsx` | Client browser |
 | `/icon.svg` | Static Asset | `app/icon.svg` | None |
 
 ## Data flow
 
-1. **Homepage composition**: `app/page.tsx` statically imports and composes `Navbar`, `Hero`, `Works`, `About`, and `Contact`.
-2. **Gallery data & lightbox**: `lib/gallery/manifest.ts` holds canonical entries -> `lib/gallery/storage.ts` resolves storage providers (`local`, `google-drive`, `custom`) into clean `src` strings -> `GalleryGrid.tsx` renders masonry items and manages active modal state via keyboard / click triggers.
-3. **Image source/storage**: Currently configured with dual support for local paths (`public/gallery/*`) and remote URLs (`drive.google.com`, `lh3.googleusercontent.com`, or custom CDNs).
-4. **Build & deployment**: `npm run build` runs Turbopack static export -> generates `out/` -> Anybuild static provider consumes `out/` without server runtime.
+1. **Homepage composition**: `app/page.tsx` statically imports and composes `Navbar`, `Hero`, `Works` (Design), `DevelopmentSection` (3 featured software projects), `About`, `Services`, `Testimonials`, and `Contact`.
+2. **Development data & case studies**: `docs/dev-md/*.md` serves as the authoritative source text -> normalized into `lib/development/projects.ts` -> statically compiled into `/development/` and individual `/development/[slug]/` case study pages during `next build`.
+3. **Gallery data & lightbox**: `lib/gallery/manifest.ts` holds canonical entries -> `lib/gallery/storage.ts` resolves storage providers (`local`, `google-drive`, `custom`) into clean `src` strings -> `GalleryGrid.tsx` renders masonry items and manages active modal state via keyboard / click triggers.
+4. **Image source/storage**: Configured with dual support for local paths (`public/gallery/*`, `/projects/*`, `/dev/*`) and remote URLs (`drive.google.com`, `lh3.googleusercontent.com`, or custom CDNs).
+5. **Build & deployment**: `npm run build` runs Turbopack static export -> generates `out/` -> Anybuild static provider consumes `out/` without server runtime.
 
 ## Deployment facts
 
@@ -137,6 +169,8 @@ Durable Drive gallery source of truth: `docs/harness/DRIVE_GALLERY.md`
 | Gallery UI | `components/gallery/GalleryGrid.tsx` | Home components |
 | Gallery data / source | `lib/gallery/manifest.ts`, `lib/gallery/storage.ts` | UI layout code |
 | Gallery storage / Drive mapping | `docs/harness/DRIVE_GALLERY.md`, `lib/gallery/manifest.ts`, `lib/gallery/storage.ts`, `scripts/audit-gallery-sources.mjs` | `Hero`, `Navbar`, `app/globals.css`, homepage components |
+| Development projects / data | `lib/development/projects.ts`, `lib/development/types.ts` | Gallery files, storage scripts |
+| Development UI / routes | `app/development/page.tsx`, `components/development/*`, `components/DevelopmentSection.tsx` | Gallery manifests, drive configs |
 | Deployment failure | `next.config.ts`, `.dockerignore`, `scripts/deploy-audit.mjs` | Component code |
 | Asset performance | `app/globals.css`, `lib/gallery.ts` | Next config |
 | Harness maintenance | `AGENTS.md`, `docs/harness/*`, `scripts/harness-status.mjs` | App routes |

@@ -13,10 +13,16 @@ const tools = [
   "PHOTOSHOP",
   "ILLUSTRATOR",
   "INDESIGN",
-  "AFTER EFFECTS",
   "FIGMA",
-  "BLENDER",
-  "PROCREATE",
+  "AFTER EFFECTS",
+  "TYPESCRIPT",
+  "NEXT.JS",
+  "REACT",
+  "VUE",
+  "POSTGRESQL",
+  "SUPABASE",
+  "C#",
+  ".NET",
 ];
 
 export default function About() {
@@ -26,7 +32,7 @@ export default function About() {
       className="mx-auto max-w-7xl scroll-mt-20 px-6 py-28 md:px-10 md:py-40"
     >
       <Reveal>
-        <Eyebrow index="02" label="About" />
+        <Eyebrow index="03" label="About" />
       </Reveal>
 
       <div className="grid gap-16 md:grid-cols-[2fr_3fr]">
@@ -36,7 +42,7 @@ export default function About() {
             <div className="absolute inset-0">
               <ProgressiveImage
                 src="/jeizi-zamora.webp"
-                alt="Jeizi Zamora"
+                alt="John Christopher King Zamora (Jeizi)"
                 fill
                 sizes="(min-width: 768px) 40vw, 100vw"
                 className="object-cover object-top"
@@ -49,32 +55,43 @@ export default function About() {
               <span className="text-blood">Est. 2018</span>
             </div>
           </div>
-          <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.25em] text-ash">
-            Fig. 01 — Jeizi Zamora.
-          </p>
+          <div className="mt-5 space-y-1.5">
+            <h3 className="font-display text-xl font-bold uppercase tracking-tight text-bone md:text-2xl">
+              John Christopher King Zamora
+            </h3>
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-blood font-semibold">
+              Jeizi / Jeizi Productions
+            </p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
+              Full-Stack Developer &amp; Graphic Designer
+            </p>
+          </div>
         </Reveal>
 
         <div>
           <Reveal delay={150}>
             <h2 className="font-display text-4xl font-bold uppercase leading-[0.95] tracking-tight md:text-6xl">
-              A designer who{" "}
-              <span className="italic text-blood">believes</span> in noise.
+              Built with{" "}
+              <span className="italic text-blood">a designer&apos;s</span> eye.
             </h2>
           </Reveal>
 
           <Reveal delay={250}>
             <div className="mt-8 max-w-xl space-y-5 text-base leading-relaxed text-ash md:text-lg">
               <p>
-                For over eight years I&apos;ve helped brands find their voice —
-                loud, clear, and unmistakably theirs. My work sits at the
-                intersection of bold typography, raw contrast, and ideas that
-                actually do something.
+                Design has been the foundation of my work for over eight years.
+                It taught me hierarchy, clarity, composition, and how to turn an
+                idea into something people remember. Programming expanded that
+                craft — today I build complete digital products across frontend
+                interfaces, backend logic, databases, realtime workflows, mobile
+                apps, and desktop systems.
               </p>
               <p>
-                From barangay and campaign identities that serve communities to
-                startups and brands that need to fight for attention, I treat
-                every brief like a blank page worth making a scene on. No safe
-                logos. No beige. Just work with a pulse.
+                That combination means I don&apos;t stop at how a product looks.
+                I care about how it works, how it feels to use, and how the
+                entire system fits together. From visual identities to
+                full-stack applications, I build work that is both technically
+                solid and visually intentional.
               </p>
             </div>
           </Reveal>

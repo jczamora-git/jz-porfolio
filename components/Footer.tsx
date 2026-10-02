@@ -16,7 +16,7 @@ export default function Footer() {
           />
           Jeizi Productions © 2026 — All rights reserved
         </span>
-        <span className="hidden md:inline">Designed &amp; built with Next.js</span>
+        <span className="hidden md:inline">Designed &amp; engineered by Jeizi Productions</span>
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

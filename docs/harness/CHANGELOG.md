@@ -3,7 +3,176 @@
 Append one compact entry per completed coding task. Newest entry first.
 Do not copy raw logs.
 
-## 2026-10-01 — Progressive Loading Architecture & Idle Service Worker
+## 2026-10-03 — Professional Identity Integration: John Christopher King Zamora
+
+**Goal:** Integrate real professional identity (John Christopher King Zamora) alongside public creative identity (Jeizi) and brand (Jeizi Productions) across Hero intro, About portrait block, and site metadata.
+
+**Changed:** `components/Hero.tsx`, `components/About.tsx`, `app/layout.tsx`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:**
+- Hero intro updated to: "I'm John Christopher King Zamora — known as Jeizi, a full-stack developer and graphic designer behind Jeizi Productions. I build production-ready web, mobile, and desktop systems with the same attention to structure, usability, and visual identity from interface to deployment. Based in the Philippines, working worldwide."
+- About section portrait block enhanced with prominent identity header: "JOHN CHRISTOPHER KING ZAMORA", supporting identity "JEIZI / JEIZI PRODUCTIONS", and professional role "FULL-STACK DEVELOPER & GRAPHIC DESIGNER".
+- Metadata title updated to "John Christopher King Zamora — Full-Stack Developer & Graphic Designer" with descriptive portfolio context.
+
+**Verified:** `npm run harness:status` ✅; `npm run verify` ✅ (0 errors, 0 warnings); `npm run build` ✅ (12 static pages generated); `npm run verify:static` ✅ (all 12 routes verified).
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
+## 2026-10-03 — Copy Polish: About Heading & Footer Credit
+
+**Goal:** Update the About section heading to "Built with a designer's eye." (preserving italic/red emphasis) and the Footer credit to "Designed & engineered by Jeizi Productions".
+
+**Changed:** `components/About.tsx`, `components/Footer.tsx`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:**
+- Updated About heading in `components/About.tsx` from "A builder with a designer's eye." to "Built with a designer's eye." with `<span className="italic text-blood">a designer&apos;s</span>`.
+- Updated footer credit in `components/Footer.tsx` from "Designed & built with Next.js" to "Designed & engineered by Jeizi Productions".
+- Preserved all layouts, styling, stats, tools, and Back to top behavior.
+
+**Verified:** `npm run harness:status` ✅; `npm run verify` ✅ (0 errors, 0 warnings); `npm run build` ✅ (12 static pages generated); `npm run verify:static` ✅ (all 12 routes verified).
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
+## 2026-10-03 — Hero Rotating Headline & Elevated Outlined Typewriter Position
+
+**Goal:** Move the outlined "JEIZI PRODUCTIONS" typewriter up into the visible Hero area (removing negative bottom clipping), replace the static large `<h1>` with a dynamic 5-title rotating headline sequence with smooth transition and zero layout shift, and eliminate the separate small role line below the intro paragraph.
+
+**Changed:** `components/Hero.tsx`, `components/HeroRotatingHeadline.tsx`, `components/HeroOutlineTypewriter.tsx`, `components/HeroRotatingRole.tsx` (removed), `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:**
+- Replaced static `h1` with `HeroRotatingHeadline.tsx` cycling every 5000ms through: 1. "BOLD IDEAS, / sharp design." → 2. "I'M A / FULL-STACK DEVELOPER." → 3. "I'M A / GRAPHIC DESIGNER." → 4. "I BUILD / DIGITAL SYSTEMS." → 5. "I DESIGN / VISUAL IDENTITIES."
+- Implemented smooth transition (400ms ease-out translateY(-12px) exit → 500ms cubic-bezier translateY(0) entrance) and reserved min-height to prevent layout shift.
+- Removed small separate role line under paragraph.
+- Elevated `HeroOutlineTypewriter.tsx` to `bottom-4 left-6 sm:bottom-6 sm:left-8 md:bottom-8 md:left-10 lg:bottom-10 lg:left-10` with `max-w-[92vw] overflow-hidden` preventing horizontal page scroll.
+- Full `prefers-reduced-motion: reduce` support across both components.
+
+**Verified:** `npm run harness:status` ✅; `npm run verify` ✅ (0 errors, 0 warnings); `npm run build` ✅ (12 static pages generated); `npm run verify:static` ✅ (all 12 routes verified).
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
+## 2026-10-03 — LAN Dev Access & Large Outlined "JEIZI PRODUCTIONS" Typewriter Animation
+
+**Goal:** Configure Next.js dev server for cross-device LAN access (`192.168.1.3:3000`), and replace the static giant outlined "J" watermark with a responsive, looping thin-outlined typewriter animation (`HeroOutlineTypewriter.tsx`) spelling "JEIZI PRODUCTIONS".
+
+**Changed:** `next.config.ts`, `package.json`, `components/Hero.tsx`, `components/HeroOutlineTypewriter.tsx`, `components/HeroBrandTypewriter.tsx` (removed), `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:**
+- Added `allowedDevOrigins: ["192.168.1.3", "192.168.1.3:3000"]` to `next.config.ts` and added `"dev:lan": "next dev --hostname 0.0.0.0"` to `package.json`.
+- Implemented `HeroOutlineTypewriter.tsx`: the large thin outlined typography (`text-outline font-display font-bold text-[clamp(2.5rem,9.5vw,10.5rem)]`) itself animates as a looping typewriter ("JEIZI PRODUCTIONS") at 100ms/char → 2000ms hold with blinking red caret → 50ms/char erase → 600ms pause → repeat.
+- Zero horizontal overflow via `max-w-[95vw] overflow-hidden` wrapper.
+- Respects `prefers-reduced-motion: reduce` by statically rendering full outlined "JEIZI PRODUCTIONS" without animation or blinking.
+
+**Verified:** `npm run harness:status` ✅; `npm run verify` ✅ (0 errors, 0 warnings); `npm run build` ✅ (12 static pages generated); `npm run verify:static` ✅ (all 12 routes verified).
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
+## 2026-10-03 — Unified Large Outlined J Watermark & Looping Typewriter Brand Lockup
+
+**Goal:** Unify the large thin outlined decorative "J" watermark with the looping typewriter animation of "JEIZI PRODUCTIONS" into an integrated editorial brand lockup in the lower-left Hero area.
+
+**Changed:** `components/Hero.tsx`, `components/HeroBrandTypewriter.tsx`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:**
+- Combined the large outlined "J" watermark (`text-outline select-none font-display text-[22rem] md:text-[30rem]`) and the looping typewriter animation into a single unified lockup component (`HeroBrandTypewriter.tsx`).
+- Looping typewriter behavior: types "JEIZI PRODUCTIONS" (85ms/char) → holds for 1800ms with a blinking red caret → backspaces (45ms/char) → pauses (500ms) → smoothly repeats across all viewports.
+- In `prefers-reduced-motion: reduce`, the full text "JEIZI PRODUCTIONS" is statically displayed immediately with no typing or looping animations.
+
+**Verified:** `npm run harness:status` ✅; `npm run verify` ✅ (0 errors, 0 warnings); `npm run build` ✅ (12 static pages generated); `npm run verify:static` ✅ (all 12 routes verified).
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
+## 2026-10-03 — Hero Headline Restoration & Dynamic Role/Brand Animations
+
+**Goal:** Restore the original "BOLD IDEAS, / SHARP DESIGN." editorial headline, introduce a 5-second rotating professional role line beneath the intro copy with zero layout shift, add a single-run typewriter animation for "JEIZI PRODUCTIONS" with blinking caret near the watermark "J", and ensure full reduced-motion support.
+
+**Changed:** `components/Hero.tsx`, `components/HeroRotatingRole.tsx`, `components/HeroBrandTypewriter.tsx`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:**
+- Restored Hero headline to "BOLD IDEAS, / SHARP DESIGN." with editorial italic red emphasis on "sharp".
+- Created `HeroRotatingRole` with smooth opacity/translateY transition (400ms duration, `cubic-bezier(0.22, 1, 0.36, 1)`) cycling every 5000ms through developer-first sequence ("I'm a Full-Stack Developer" → "I'm a Graphic Designer" → "I Build Digital Systems" → "I Design Visual Identities") with reserved height.
+- Created `HeroBrandTypewriter` displaying "JEIZI PRODUCTIONS" typing once (800ms initial delay, 85ms/char) followed by a persistent soft blinking caret.
+- Implemented `prefers-reduced-motion: reduce` compliance across both dynamic components (static first role + immediate full brand text without blinking).
+
+**Verified:** `npm run harness:status` ✅; `npm run verify` ✅ (0 errors, 0 warnings); `npm run build` ✅ (12 static pages generated); `npm run verify:static` ✅ (all 12 routes verified).
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
+## 2026-10-03 — LearnMCA Comprehensive Case Study Enhancement
+
+**Goal:** Enhance LearnMCA case study and source documentation to accurately communicate the full institutional breadth of the platform (School Operations, Academics & Spreadsheet Grading with Offline Sync, Integrated LMS with Quizzes, Tuition & Uniform Services, RFID Attendance with Email/SMS Alerts, Communication, and AI Layer).
+
+**Changed:** `lib/development/projects.ts`, `docs/dev-md/mca-markdown.txt`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:**
+- Positioned LearnMCA as an `AI-Enhanced School Management System` (`CLIENT SYSTEM — SCHOOL MANAGEMENT & AI`).
+- Tagline updated to `"AI-enhanced full-stack school management system integrating enrollment, academics, LMS, payments, attendance, communication, and intelligent analytics."`
+- Detailed 5 core engineering highlights: Unified School Operations, LMS + Academic Grade Synchronization, Offline-First Grade Entry, RFID Attendance + Notifications, AI-Assisted School Intelligence.
+- Enriched feature listing and stack architecture covering offline sync, LMS quiz score integration, RFID gate session detection, email/SMS parent alerts, and uniform orders.
+- Synchronized authoritative source document `docs/dev-md/mca-markdown.txt` and normalized data `lib/development/projects.ts`.
+
+**Verified:** `npm run harness:status` ✅; `npm run verify` ✅ (0 errors, 0 warnings); `npm run build` ✅ (12 static pages generated); `npm run verify:static` ✅ (all 12 routes verified).
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
+## 2026-10-03 — Homepage Developer-First Positioning & Copy Refinement
+
+**Goal:** Position Jeizi primarily as a Full-Stack Developer with deep graphic design foundations, update homepage featured development projects to SK Balite Plus, Vaultify, and Retrv (retaining Jeizi OCR in `/development/`), update Hero headline to "BUILD BOLD. / DESIGN SHARP.", update public email to `johnchristopherkingzamora@gmail.com`, align About and Services copy with verified capabilities, remove unverified testimonials, and normalize section numbering.
+
+**Changed:** `app/layout.tsx`, `app/page.tsx`, `components/Hero.tsx`, `components/DevelopmentSection.tsx`, `components/About.tsx`, `components/Services.tsx`, `components/Contact.tsx`, `components/ContactForm.tsx`, `lib/development/projects.ts`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:**
+- Global branding updated to "Full-Stack Developer & Graphic Designer" across site metadata, hero eyebrow, and navbar.
+- Hero headline updated to "BUILD BOLD. / DESIGN SHARP." and intro refreshed.
+- Public email updated to `johnchristopherkingzamora@gmail.com` across all public-facing points.
+- Homepage featured development projects set to SK Balite Plus, Vaultify, and Retrv in `lib/development/projects.ts`. Jeizi OCR Controller remains accessible in `/development/` and `/development/jeizi-ocr/`.
+- About copy adjusted to frame 8+ years of design as the foundational craft while presenting full-stack software delivery (frontend, backend, databases, realtime, mobile, desktop) and refined skill list.
+- Services copy grounded in demonstrated capabilities without unverified claims (removed GraphQL/microservices/sub-100ms render targets).
+- Removed unverified placeholder testimonials from production homepage render; normalized section numbering to 01 Selected Work, 02 Full-Stack Development, 03 About, 04 Services & Capabilities, 05 Contact.
+- Removed stale Q3 2026 booking copy and artificial slot scarcity; set availability to "AVAILABLE FOR SELECTED PROJECTS".
+
+**Verified:** `npm run harness:status` ✅; `npm run verify` ✅ (0 errors, 0 warnings); `npm run build` ✅ (12 static pages generated); `npm run verify:static` ✅ (all 12 routes verified).
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
+## 2026-10-03 — Image Presentation Fix & LearnMCA AI-Enhanced School Management System Positioning
+
+**Goal:** Eliminate image letterboxing/padding for Vaultify, SK Balite Plus, and Retrv cards and heroes, and update LearnMCA positioning to an AI-Enhanced School Management System with Chatbot, Predictive Analytics, and Sentiment Analysis.
+
+**Changed:** `lib/development/types.ts`, `lib/development/projects.ts`, `components/development/DevelopmentProjectCard.tsx`, `components/development/DevelopmentCaseStudy.tsx`, `docs/dev-md/mca-markdown.txt`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:**
+- Image presentation: Removed inner card padding, added `coverPosition` and `heroMediaMode` ("full-bleed"), configured Vaultify (`object-center`), SK Balite Plus (`object-top`), Retrv (`object-center`), eliminating unwanted margins.
+- LearnMCA positioning: Category set to `CLIENT SYSTEM — SCHOOL MANAGEMENT & AI`, tagline updated to `"AI-enhanced full-stack school management platform for academic, administrative, and student-service operations."`, with core features highlighting Online Enrollment, LMS / Learning Resources, RFID Attendance, and AI capabilities (AI Chatbot, Model-Driven Predictive Analytics, Semantic & Sentiment Analysis). Updated source document `docs/dev-md/mca-markdown.txt` and normalized data `lib/development/projects.ts`.
+
+**Verified:** `npm run harness:status` ✅; `npm run verify` ✅ (0 errors, 0 warnings); `npm run build` ✅ (12 static pages generated); `npm run verify:static` ✅ (all 12 routes verified).
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
+## 2026-10-03 — Authoritative 7 Development Projects Implementation & Case Studies
+
+**Goal:** Populate and publish all seven real development projects from authoritative docs in `docs/dev-md/` using supplied showcase media in `public/dev/`, implement dedicated static case study pages, separate Client Systems from Personal Products, and update homepage featured showcase.
+
+**Changed:** `lib/development/types.ts`, `lib/development/projects.ts`, `components/development/DevelopmentProjectCard.tsx`, `components/development/DevelopmentCaseStudy.tsx`, `app/development/page.tsx`, `app/development/[slug]/page.tsx`, `components/DevelopmentSection.tsx`, `components/Hero.tsx`, `scripts/verify-static-output.mjs`, `docs/harness/AUDIT.md`, `docs/harness/CHANGELOG.md`, `docs/harness/HANDOFF.md`.
+
+**Result:** Published all 7 authoritative software projects across Client Systems (01 SK Balite Plus, 02 LearnMCA, 03 LRMS) and Personal Products (04 Vaultify, 05 Jeizi OCR Controller, 06 AutoSnap, 07 Retrv). Built static Next.js App Router case studies with `generateStaticParams()`. Updated `/development/` with clear discipline headers and pipeline block. Featured 3 distinct projects (SK Balite Plus, Jeizi OCR, Vaultify) on homepage. Verified exact Hero eyebrow and intro copy without regressions.
+
+**Verified:** `npm run verify` ✅ (0 errors, 0 warnings); `npm run build` ✅ (12 static routes generated); `npm run verify:static` ✅ (all 12 routes, 11 representative assets verified); `npm run harness:status` ✅.
+
+**Architecture impact:** Full static generation (SSG) of dedicated software case studies running alongside 79-work design portfolio.
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
+**Goal:** Expand portfolio from graphic design focus into a dual-discipline professional portfolio (Graphic Designer + Full-Stack Developer) with first-class software architecture, dedicated `/development/` route, reusable project cards/case study system, and data-driven project entry workflow.
+
+**Changed:** `lib/development/types.ts`, `lib/development/projects.ts`, `components/development/DevelopmentProjectCard.tsx`, `components/development/DevelopmentCaseStudy.tsx`, `app/development/page.tsx`, `components/DevelopmentSection.tsx`, `components/Navbar.tsx`, `components/Hero.tsx`, `components/About.tsx`, `components/Services.tsx`, `app/page.tsx`, `app/layout.tsx`, `scripts/verify-static-output.mjs`, `docs/harness/AUDIT.md`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:** Established canonical `DevelopmentProject` model and data store (`lib/development/projects.ts`), built `/development/` route, integrated `DevelopmentSection` on homepage with workflow pipeline (`DESIGN → INTERFACE → FRONTEND → BACKEND → DATABASE → DEPLOYMENT`), added `DEVELOPMENT` navigation link with active state, structured Services into Design and Development disciplines, updated Hero/About/Layout professional labels without fabricating unverified metrics or fake projects, and prepared reusable `DevelopmentCaseStudy` component.
+
+**Verified:** `npm run verify` ✅ (TypeScript + ESLint pass with 0 errors); `npm run build` ✅ (Turbopack static export generates `/`, `/gallery/`, `/development/`, `/_not-found`); `npm run verify:static` ✅; `npm run harness:status` ✅.
+
+**Architecture impact:** First-class Software Development portfolio discipline running alongside existing 79-work Design portfolio under native Next.js static export. Data-driven project additions.
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
 
 **Goal:** Implement immediate shell rendering, dark brutalist skeleton placeholders, independent image swap, and idle-time Service Worker media caching.
 
