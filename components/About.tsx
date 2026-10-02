@@ -29,11 +29,12 @@ export default function About() {
   return (
     <section
       id="about"
-      className="mx-auto max-w-7xl scroll-mt-20 px-6 py-28 md:px-10 md:py-40"
+      className="mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-40"
     >
-      <Reveal>
-        <Eyebrow index="03" label="About" />
-      </Reveal>
+      <div data-section-content>
+        <Reveal>
+          <Eyebrow index="03" label="About" />
+        </Reveal>
 
       <div className="grid gap-16 md:grid-cols-[2fr_3fr]">
         {/* Portrait block */}
@@ -124,6 +125,7 @@ export default function About() {
             </div>
           </Reveal>
         </div>
+      </div>
       </div>
     </section>
   );

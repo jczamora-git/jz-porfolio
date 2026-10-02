@@ -43,10 +43,11 @@ const projects: Project[] = [
 
 export default function Works() {
   return (
-    <section id="work" className="mx-auto max-w-7xl scroll-mt-20 px-6 py-28 md:px-10 md:py-40">
-      <Reveal>
-        <Eyebrow index="01" label="Selected Work" />
-      </Reveal>
+    <section id="work" className="mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-40">
+      <div data-section-content>
+        <Reveal>
+          <Eyebrow index="01" label="Selected Work" />
+        </Reveal>
 
       <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
         <Reveal delay={100}>
@@ -111,6 +112,7 @@ export default function Works() {
             →
           </span>
         </a>
+      </div>
       </div>
     </section>
   );

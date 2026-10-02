@@ -10,11 +10,12 @@ export default function DevelopmentSection() {
   return (
     <section
       id="development"
-      className="mx-auto max-w-7xl scroll-mt-20 px-6 py-28 md:px-10 md:py-40"
+      className="mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-40"
     >
-      <Reveal>
-        <Eyebrow index="02" label="Full-Stack Development" />
-      </Reveal>
+      <div data-section-content>
+        <Reveal>
+          <Eyebrow index="02" label="Full-Stack Development" />
+        </Reveal>
 
       <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
         <Reveal delay={100}>
@@ -78,6 +79,7 @@ export default function DevelopmentSection() {
             →
           </span>
         </Link>
+      </div>
       </div>
     </section>
   );

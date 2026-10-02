@@ -3,6 +3,22 @@
 Append one compact entry per completed coding task. Newest entry first.
 Do not copy raw logs.
 
+## 2026-10-03 — Section Navigation Viewport Centering & Open Graph Social Preview
+
+**Goal:** Fix homepage section navigation so clicking `#about`, `#contact`, `#services`, `#work` frames target content intentionally around the viewport center (eliminating huge empty top gaps), and configure `public/og-jeizi.png` as the production Open Graph and Twitter sharing image for `https://jeiziproductions.com`.
+
+**Changed:** `lib/scroll.ts`, `components/Navbar.tsx`, `components/About.tsx`, `components/Contact.tsx`, `components/Services.tsx`, `components/Works.tsx`, `components/DevelopmentSection.tsx`, `app/layout.tsx`, `scripts/verify-static-output.mjs`, `public/og-jeizi.png`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:**
+- Created reusable `scrollToSection` helper in `lib/scroll.ts` with inner container `data-section-content` targeting. Compact sections (About, Contact) vertically center in the available viewport below the fixed navbar; tall sections (Work) top-align with comfortable clearance.
+- Updated `Navbar.tsx` for smooth programmatic hash scrolling, history pushState, direct visit hash landing, hashchange listener, and clean mobile menu closing.
+- Configured root metadata in `app/layout.tsx` with `metadataBase: new URL("https://jeiziproductions.com")`, `openGraph` (1200x630 `og-jeizi.png`), and `twitter:card: "summary_large_image"`.
+- Verified static output: `out/og-jeizi.png` and all meta tags in `out/index.html`.
+
+**Verified:** `npm run harness:status` ✅; `npm run verify` ✅ (0 errors, 0 warnings); `npm run build` ✅ (12 static pages generated); `npm run verify:static` ✅ (all 12 routes, case studies, and `og-jeizi.png` verified); `npm run deploy:audit` ✅.
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
 ## 2026-10-03 — Professional Identity Integration: John Christopher King Zamora
 
 **Goal:** Integrate real professional identity (John Christopher King Zamora) alongside public creative identity (Jeizi) and brand (Jeizi Productions) across Hero intro, About portrait block, and site metadata.

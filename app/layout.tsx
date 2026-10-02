@@ -21,9 +21,37 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://jeiziproductions.com"),
   title: "John Christopher King Zamora — Full-Stack Developer & Graphic Designer",
   description:
     "Official portfolio of John Christopher King Zamora (Jeizi), creator of Jeizi Productions. Full-stack developer and graphic designer building production-ready web, mobile, desktop, and visual systems.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "John Christopher King Zamora — Full-Stack Developer & Graphic Designer",
+    description:
+      "Official portfolio of John Christopher King Zamora (Jeizi), creator of Jeizi Productions. Full-stack developer and graphic designer building production-ready web, mobile, desktop, and visual systems.",
+    url: "https://jeiziproductions.com/",
+    siteName: "Jeizi Productions",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/og-jeizi.png",
+        width: 1200,
+        height: 630,
+        alt: "John Christopher King Zamora — Jeizi Productions",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "John Christopher King Zamora — Full-Stack Developer & Graphic Designer",
+    description:
+      "Official portfolio of John Christopher King Zamora (Jeizi), creator of Jeizi Productions. Full-stack developer and graphic designer building production-ready web, mobile, desktop, and visual systems.",
+    images: ["/og-jeizi.png"],
+  },
   icons: {
     icon: "/jeizi-logo.png",
     shortcut: "/jeizi-logo.png",

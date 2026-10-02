@@ -13,11 +13,11 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative scroll-mt-20 overflow-hidden px-6 py-28 md:px-10 md:py-40"
+      className="relative overflow-hidden px-6 py-28 md:px-10 md:py-40"
     >
       <div className="pointer-events-none absolute -left-40 top-1/3 h-[30rem] w-[30rem] rounded-full bg-blood/10 blur-[150px]" />
 
-      <div className="relative mx-auto max-w-7xl">
+      <div data-section-content className="relative mx-auto max-w-7xl">
         <Reveal>
           <Eyebrow index="05" label="Contact" />
         </Reveal>

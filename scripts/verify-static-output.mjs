@@ -86,6 +86,7 @@ const representativeImages = [
   "dev/jeizi-ocr.png",
   "dev/auto-snap.png",
   "dev/retrv-app.png",
+  "og-jeizi.png",
 ];
 
 // If local gallery assets were built into out/, check representative sample

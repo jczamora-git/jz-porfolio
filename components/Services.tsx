@@ -54,11 +54,12 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="mx-auto max-w-7xl scroll-mt-20 px-6 py-28 md:px-10 md:py-40"
+      className="mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-40"
     >
-      <Reveal>
-        <Eyebrow index="04" label="Services & Capabilities" />
-      </Reveal>
+      <div data-section-content>
+        <Reveal>
+          <Eyebrow index="04" label="Services & Capabilities" />
+        </Reveal>
 
       <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
         <Reveal delay={100}>
@@ -175,6 +176,7 @@ export default function Services() {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

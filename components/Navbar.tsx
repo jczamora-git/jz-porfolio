@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { scrollToSection } from "@/lib/scroll";
 
 const links = [
   { label: "WORK", href: "/#work" },
@@ -42,6 +43,64 @@ export default function Navbar() {
     };
   }, [open]);
 
+  // Handle direct visit hash landing and back/forward hash changes
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hash) {
+      const hash = window.location.hash;
+      const t = setTimeout(() => {
+        scrollToSection(hash, true);
+      }, 120);
+      return () => clearTimeout(t);
+    }
+  }, []);
+
+  useEffect(() => {
+    const onHashChange = () => {
+      if (window.location.hash) {
+        scrollToSection(window.location.hash);
+      }
+    };
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (href === "/") {
+      if (pathname === "/") {
+        e.preventDefault();
+        setOpen(false);
+        window.history.pushState(null, "", "/");
+        const prefersReduced = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+        window.scrollTo({
+          top: 0,
+          behavior: prefersReduced ? "auto" : "smooth",
+        });
+      } else {
+        setOpen(false);
+      }
+      return;
+    }
+
+    if (href.startsWith("/#") || href.startsWith("#")) {
+      const hash = href.replace(/^\//, "");
+      if (pathname === "/") {
+        e.preventDefault();
+        setOpen(false);
+        window.history.pushState(null, "", href);
+        scrollToSection(hash);
+      } else {
+        setOpen(false);
+      }
+    } else {
+      setOpen(false);
+    }
+  };
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transform-gpu transition-all duration-300 ${
@@ -53,6 +112,7 @@ export default function Navbar() {
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:h-20 md:px-10">
         <Link
           href="/"
+          onClick={(e) => handleNavClick(e, "/")}
           className="flex items-center"
           aria-label="Jeizi Productions — home"
         >
@@ -80,6 +140,7 @@ export default function Navbar() {
               <li key={l.label}>
                 <a
                   href={l.href}
+                  onClick={(e) => handleNavClick(e, l.href)}
                   className={`link-underline font-mono text-[11px] tracking-[0.2em] lg:tracking-[0.25em] transition-colors ${
                     isActive ? "is-active text-bone" : "text-ash hover:text-bone"
                   }`}
@@ -94,6 +155,7 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <Link
             href="/#contact"
+            onClick={(e) => handleNavClick(e, "/#contact")}
             className="hidden bg-blood px-5 py-2.5 font-mono text-[11px] tracking-[0.2em] text-ink transition-colors hover:bg-bone md:inline-block"
           >
             LET&apos;S TALK ↗
@@ -135,14 +197,12 @@ export default function Navbar() {
               key={l.label}
               style={{ transitionDelay: open ? `${i * 70}ms` : "0ms" }}
               className={`transition-all duration-500 ${
-                open
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-6 opacity-0"
+                open ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
               }`}
             >
               <a
                 href={l.href}
-                onClick={() => setOpen(false)}
+                onClick={(e) => handleNavClick(e, l.href)}
                 className="font-display text-5xl font-bold uppercase leading-tight tracking-tight"
               >
                 {l.label} <span className="text-blood">/</span>
@@ -153,7 +213,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link
             href="/#contact"
-            onClick={() => setOpen(false)}
+            onClick={(e) => handleNavClick(e, "/#contact")}
             className="bg-blood px-6 py-3 font-mono text-xs tracking-[0.2em] text-ink"
           >
             LET&apos;S TALK ↗

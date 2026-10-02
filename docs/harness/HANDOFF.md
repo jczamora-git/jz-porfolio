@@ -2,8 +2,8 @@
 
 HANDOFF_VERSION: 1
 UPDATED_AT: 2026-10-03
-AUDITED_COMMIT: f3cf365
-CURRENT_HEAD: f3cf365
+AUDITED_COMMIT: 537d1a5
+CURRENT_HEAD: 537d1a5
 STATE: READY
 
 ## PROFESSIONAL IDENTITY HIERARCHY
@@ -13,50 +13,53 @@ STATE: READY
 - BRAND: Jeizi Productions
 - ROLE: Full-Stack Developer & Graphic Designer
 - EMAIL: johnchristopherkingzamora@gmail.com
+- SOCIAL PREVIEW: public/og-jeizi.png (1200x630, 424.94 KB)
+- PRODUCTION OG URL: https://jeiziproductions.com/og-jeizi.png
 
 ## CURRENT STATUS
 
-1. IDENTITY PRESENTATION:
-   - Hero Intro: "I'm John Christopher King Zamora — known as Jeizi, a full-stack developer and graphic designer behind Jeizi Productions. I build production-ready web, mobile, and desktop systems with the same attention to structure, usability, and visual identity from interface to deployment. Based in the Philippines, working worldwide."
-   - About Portrait Block: Prominently displays "JOHN CHRISTOPHER KING ZAMORA" with supporting identity "JEIZI / JEIZI PRODUCTIONS" and discipline "FULL-STACK DEVELOPER & GRAPHIC DESIGNER".
-   - Metadata / SEO: Title set to "John Christopher King Zamora — Full-Stack Developer & Graphic Designer" with description recognizing Jeizi Productions.
-   - Contact / Footer: Verified consistent email `johnchristopherkingzamora@gmail.com` and brand footer `Jeizi Productions © 2026`.
+1. NAVIGATION SECTION POSITIONING:
+   - Implementation: Reusable `scrollToSection` helper in `lib/scroll.ts` integrated into `Navbar.tsx`.
+   - Behavior: Compact sections (About, Contact) are vertically centered within the viewport with comfortable fixed navbar clearance. Tall content streams (Work) are top-aligned right below the navbar.
+   - Inner Content Targeting: Inner wrappers marked with `data-section-content` ensure padding inside sections does not push content off-center or create empty top gaps.
+   - Hash & URL State: Updates URL hash cleanly via `pushState` and handles direct visit landing (e.g. `/#about`, `/#contact`) as well as `popstate`/`hashchange`.
+   - Reduced Motion: Respects `prefers-reduced-motion: reduce` with immediate jump instead of smooth animation.
+   - Mobile: Closes mobile drawer immediately upon selection and positions target section cleanly without body scroll locking.
 
-2. HERO ANIMATIONS:
-   - Dynamic rotating headline in large `h1` area (`HeroRotatingHeadline.tsx`) cycling 5 titles every 5000ms with zero layout shift.
-   - Looping thin-outlined typewriter (`HeroOutlineTypewriter.tsx`) visibly positioned in lower-left Hero without clipping.
-   - Full `prefers-reduced-motion: reduce` compliance across both components.
+2. OPEN GRAPH & SOCIAL PREVIEW:
+   - Asset: `public/og-jeizi.png` (1200x630, 424.94 KB, 1.91:1 ratio) tracked in Git.
+   - Metadata: `metadataBase: new URL("https://jeiziproductions.com")` with complete Open Graph (`og:title`, `og:description`, `og:url`, `og:site_name`, `og:image`, `og:type`) and Twitter Cards (`summary_large_image`, `twitter:image`).
 
-3. LAN DEVELOPMENT:
-   - `allowedDevOrigins`: `["192.168.1.3", "192.168.1.3:3000"]` in `next.config.ts`.
-   - Command: `npm run dev:lan` (`next dev --hostname 0.0.0.0`).
-   - URL: `http://192.168.1.3:3000`.
+3. DEVELOPMENT SHOWCASE & DESIGN GALLERY ARCHITECTURE:
+   - Development showcase media: `public/dev/` (7 assets, 12.37 MB) tracked in Git and shipped with static export.
+   - Design gallery media: Untracked in Git (`.gitignore`, `.dockerignore`) and served from persistent Wasmer volume / Google Drive.
 
 ## VERIFIED FACTS
 
-- Real Name & Creative Brand: Fully unified across metadata, Hero, About, and Contact points.
-- Hero Headline: Dynamic rotation across 5 titles with zero layout shift.
-- Outlined Watermark: Visibly positioned in lower-left Hero without clipping.
-- Static Export: 12 static routes generated cleanly.
+- Navigation: Section content is intentionally framed/centered without excess top gaps.
+- Open Graph: `https://jeiziproductions.com/og-jeizi.png` rendered across root HTML tags.
+- Static Export: 12 static HTML routes + `og-jeizi.png` verified in `out/`.
+- Deploy Audit: Static export passes all verification checks with clean `.dockerignore` context.
 
 ## READ NEXT
 
-- `components/Hero.tsx`
-- `components/About.tsx`
+- `components/Navbar.tsx`
+- `lib/scroll.ts`
 - `app/layout.tsx`
 
 ## NEXT ACTION
 
-Ready for deployment / client preview.
+Commit and push to production Git branch for Wasmer deployment.
 
 ## DO NOT REPEAT
 
-- Do not re-investigate identity hierarchy or naming conventions.
-- Do not re-investigate Hero animations or LAN configuration.
+- Do not re-investigate section navigation positioning or scroll margin issues.
+- Do not re-investigate Open Graph image dimensions or metadata configuration.
 
 ## LAST VERIFICATION
 
 - `npm run harness:status` ✅ (clean)
 - `npm run verify` ✅ (TypeScript + ESLint pass with 0 errors)
 - `npm run build` ✅ (Turbopack static export generates 12 static routes)
-- `npm run verify:static` ✅ (all 12 routes verified in `out/`)
+- `npm run verify:static` ✅ (all 12 routes, case studies, and og-jeizi.png verified in `out/`)
+- `npm run deploy:audit` ✅ (ready for static export deployment)
