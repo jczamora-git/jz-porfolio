@@ -37,6 +37,7 @@ yarn-error.log*
 
 # local tooling & preview cache
 .freebuff/
+scratch/
 
 # IDE & editors
 .vscode/

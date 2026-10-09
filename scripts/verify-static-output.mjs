@@ -87,6 +87,8 @@ const representativeImages = [
   "dev/auto-snap.png",
   "dev/retrv-app.png",
   "og-jeizi.png",
+  "jeizi-prod.ico",
+  "favicon.ico",
 ];
 
 // If local gallery assets were built into out/, check representative sample

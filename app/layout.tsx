@@ -54,9 +54,9 @@ export const metadata: Metadata = {
     images: ["/og-jeizi.png?v=20261003"],
   },
   icons: {
-    icon: "/jeizi-logo.png",
-    shortcut: "/jeizi-logo.png",
-    apple: "/jeizi-logo.png",
+    icon: "/jeizi-prod.ico",
+    shortcut: "/jeizi-prod.ico",
+    apple: "/jeizi-prod.ico",
   },
 };
 

@@ -1,9 +1,9 @@
 # Last Handoff
 
 HANDOFF_VERSION: 1
-UPDATED_AT: 2026-10-03
-AUDITED_COMMIT: 7fb9246
-CURRENT_HEAD: 7fb9246
+UPDATED_AT: 2026-10-10
+AUDITED_COMMIT: 1040269
+CURRENT_HEAD: 1040269
 STATE: READY
 
 ## PROFESSIONAL IDENTITY HIERARCHY
@@ -15,47 +15,42 @@ STATE: READY
 - EMAIL: johnchristopherkingzamora@gmail.com
 - SOCIAL PREVIEW: public/og-jeizi.png (1200x630, 453.13 KB)
 - PRODUCTION OG URL: https://jeiziproductions.com/og-jeizi.png
+- PRODUCTION FAVICON: /jeizi-prod.ico (and /favicon.ico)
 
 ## CURRENT STATUS
 
-1. HERO OUTLINED TYPEWRITER POSITIONING:
-   - Target: `HeroOutlineTypewriter.tsx` (thin outlined decorative typography spelling "JEIZI PRODUCTIONS").
-   - Position: Anchored flush to the bottom edge of the Hero (`bottom-0 left-6 md:left-10 max-w-[95vw] overflow-hidden select-none z-0`) so it occupies the lowest visual layer with zero bottom gap.
+1. FAVICON CONFIGURATION:
+   - Asset: `public/jeizi-prod.ico` (4.18 KB) and `public/favicon.ico`.
+   - Layout: `app/layout.tsx` configured with `icons: { icon: "/jeizi-prod.ico", shortcut: "/jeizi-prod.ico", apple: "/jeizi-prod.ico" }`.
+   - Verification: Verified rendered link tags in `out/index.html` and asset presence in static export via `scripts/verify-static-output.mjs`.
 
-2. NAVIGATION SECTION POSITIONING:
-   - Implementation: Reusable `scrollToSection` helper in `lib/scroll.ts` integrated into `Navbar.tsx`.
-   - Behavior: Compact sections (About, Contact) are vertically centered within the viewport with comfortable fixed navbar clearance. Tall content streams (Work) are top-aligned right below the navbar.
-   - Inner Content Targeting: Inner wrappers marked with `data-section-content` ensure padding inside sections does not push content off-center or create empty top gaps.
-
-3. OPEN GRAPH & SOCIAL PREVIEW:
+2. OPEN GRAPH & SOCIAL PREVIEW:
    - Asset: `public/og-jeizi.png` (1200x630, 424.94 KB, 1.91:1 ratio) tracked in Git.
-   - Metadata: `metadataBase: new URL("https://jeiziproductions.com")` with complete Open Graph and Twitter Cards.
+   - Metadata: `metadataBase: new URL("https://www.jeiziproductions.com")` with complete Open Graph and Twitter Cards.
 
 ## VERIFIED FACTS
 
-- Hero Outlined Watermark: Anchored at `bottom-0`, flush with Hero bottom boundary.
-- Navigation: Section content is intentionally framed/centered without excess top gaps.
-- Open Graph: `https://jeiziproductions.com/og-jeizi.png` rendered across root HTML tags.
-- Static Export: 12 static HTML routes + `og-jeizi.png` verified in `out/`.
+- Favicon: `/jeizi-prod.ico` and `/favicon.ico` properly bundled into `out/` and referenced in `<link>` tags.
+- Open Graph: `https://www.jeiziproductions.com/og-jeizi.png` rendered across root HTML tags.
+- Static Export: 12 static HTML routes + `og-jeizi.png` + `jeizi-prod.ico` + `favicon.ico` verified in `out/`.
 
 ## READ NEXT
 
-- `components/Hero.tsx`
-- `components/HeroOutlineTypewriter.tsx`
+- `app/layout.tsx`
+- `scripts/verify-static-output.mjs`
 
 ## NEXT ACTION
 
-Ready for visual testing.
+Ready for deployment.
 
 ## DO NOT REPEAT
 
-- Do not re-investigate Hero outline vertical positioning.
-- Do not re-investigate section navigation positioning or Open Graph metadata.
+- Do not re-investigate favicon resolution or Open Graph metadata.
 
 ## LAST VERIFICATION
 
 - `npm run harness:status` ✅ (clean)
 - `npm run verify` ✅ (TypeScript + ESLint pass with 0 errors)
 - `npm run build` ✅ (Turbopack static export generates 12 static routes)
-- `npm run verify:static` ✅ (all 12 routes, case studies, and og-jeizi.png verified in `out/`)
+- `npm run verify:static` ✅ (all 12 routes, case studies, og-jeizi.png, jeizi-prod.ico, and favicon.ico verified in `out/`)
 - `npm run deploy:audit` ✅ (ready for static export deployment)

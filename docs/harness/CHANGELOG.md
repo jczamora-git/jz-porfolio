@@ -340,3 +340,18 @@ Do not copy raw logs.
 **Architecture impact:** Refreshed `docs/harness/AUDIT.md`. Core static export architecture preserved.
 
 **Handoff:** `docs/harness/HANDOFF.md` updated.
+
+## 2026-10-10 — Update Favicon to jeizi-prod.ico
+
+**Goal:** Configure `public/jeizi-prod.ico` as the site favicon and apple touch icon, add `favicon.ico` root fallback, and verify static export.
+
+**Changed:** `app/layout.tsx`, `public/jeizi-prod.ico`, `public/favicon.ico`, `scripts/verify-static-output.mjs`, `.gitignore`, `docs/harness/HANDOFF.md`, `docs/harness/CHANGELOG.md`.
+
+**Result:** Updated `metadata.icons` in `app/layout.tsx` to point to `/jeizi-prod.ico` for `icon`, `shortcut`, and `apple`. Copied `public/jeizi-prod.ico` to `public/favicon.ico` for direct crawler fallback. Updated `scripts/verify-static-output.mjs` to assert presence of both ico files in `out/`. Verified production build and static HTML link tag generation.
+
+**Verified:** `npm run verify` ✅; `npm run build` ✅; `npm run verify:static` ✅; `npm run deploy:audit` ✅; `npm run harness:status` ✅.
+
+**Architecture impact:** Favicon metadata resolution and asset export verification.
+
+**Handoff:** `docs/harness/HANDOFF.md` updated.
+
